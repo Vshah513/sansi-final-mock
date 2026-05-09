@@ -1924,6 +1924,24 @@ h4 { font-size: 22px; font-weight: 400; }
   margin-top: 30px;
 }
 
+.checklist-category {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 34px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(184, 150, 90, 0.28);
+}
+
+.checklist-category:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
 .checklist-item {
   display: grid;
   grid-template-columns: 50px 1fr;
@@ -2558,7 +2576,7 @@ h4 { font-size: 22px; font-weight: 400; }
           <div class="vision-stage">
             <div class="vision-stage-marker">
               <div class="vision-stage-num">i</div>
-              <div class="vision-stage-week">Stealth · Weeks 1 to 4</div>
+              <div class="vision-stage-week">Stealth · Weeks 1 to 5</div>
             </div>
             <div class="vision-stage-content">
               <h3>The brochure engine. The first private listing. The CRM spine.</h3>
@@ -2569,7 +2587,7 @@ h4 { font-size: 22px; font-weight: 400; }
           <div class="vision-stage">
             <div class="vision-stage-marker">
               <div class="vision-stage-num">ii</div>
-              <div class="vision-stage-week">Operational · Weeks 5 to 8</div>
+              <div class="vision-stage-week">Operational · Weeks 6 to 9</div>
             </div>
             <div class="vision-stage-content">
               <h3>All five regions. The full Collection structure. The three automations.</h3>
@@ -3211,19 +3229,21 @@ h4 { font-size: 22px; font-weight: 400; }
             <div class="phase-marker">
               <div class="phase-num">i</div>
               <div class="phase-name">Stealth Operational</div>
-              <div class="phase-weeks">Weeks 1 to 4</div>
+              <div class="phase-weeks">Weeks 1 to 5</div>
             </div>
             <div class="phase-content">
               <h3>The brochure engine, Hippo Point, the CRM spine.</h3>
               <ul>
                 <li>Brand identity locked — typography, palette, file numbering system</li>
-                <li>Brochure auto-generator (the centrepiece — first brochure ships in week 4)</li>
+                <li>Brochure auto-generator (the centrepiece — first brochure ships in week 3 or 4 depending on when content arrives)</li>
                 <li>First Private Collection listing with access-code system (Hippo Point ready)</li>
                 <li>Editorial property page templates</li>
                 <li>Zoho CRM configured + multi-user roles defined</li>
                 <li>Zoho Mail set up on sansi.africa</li>
                 <li>WhatsApp Cloud API connected</li>
+                <li>WhatsApp Cloud API approval from Meta takes 3–7 days, and we apply on day one</li>
                 <li>Site live at sansi.africa with `noindex` + splash page</li>
+                <li>Week 5 is the honest buffer for QA, revisions, edge cases, and WhatsApp go-live if Meta has approved</li>
               </ul>
             </div>
             <div>
@@ -3236,7 +3256,7 @@ h4 { font-size: 22px; font-weight: 400; }
             <div class="phase-marker">
               <div class="phase-num">ii</div>
               <div class="phase-name">Public Surface</div>
-              <div class="phase-weeks">Weeks 5 to 8</div>
+              <div class="phase-weeks">Weeks 6 to 9</div>
             </div>
             <div class="phase-content">
               <h3>All five regions, the full Collection, the three automations live.</h3>
@@ -3364,9 +3384,9 @@ h4 { font-size: 22px; font-weight: 400; }
     <section class="page" id="timeline">
       <div class="page-content">
         <div class="page-header">
-          <span class="eyebrow">Chapter 11 · The 90-day rollout</span>
+          <span class="eyebrow">Chapter 11 · The rollout</span>
           <h2>From signature <span class="serif-italic">to license-cleared launch.</span></h2>
-          <p class="lead">The Phase 1 build runs four to five weeks. The Phase 2 build runs another three to four. After that, the platform sits in stealth and operates while you finish the license. The day the license clears, we flip the switch.</p>
+          <p class="lead">The Phase 1 build runs five weeks, not four. One buffer week is built in, not hidden. Phase 2 follows in another four weeks. The honest version of the timeline always beats the optimistic one.</p>
         </div>
         
         <div class="timeline">
@@ -3378,57 +3398,69 @@ h4 { font-size: 22px; font-weight: 400; }
           </div>
           
           <div class="timeline-item">
-            <div class="timeline-week">Week 1 · Brand sprint</div>
-            <div class="timeline-title">Visual direction locked</div>
-            <div class="timeline-desc">Typography confirmed (Cormorant + Jost). Palette confirmed (gold, black, cream, indigo). Brochure variants designed. You see the v2 visual mockups by Friday of week 1, with two rounds of revisions included.</div>
+            <div class="timeline-week">Day 1 — The moment the ink is dry</div>
+            <div class="timeline-title">DNS, accounts, WhatsApp API application</div>
+            <div class="timeline-desc">We get DNS access and point it to Vercel. Zoho CRM and Zoho Mail accounts are opened in your name. The WhatsApp Business API application is submitted to Meta immediately because it takes 3–7 days and is entirely outside our control.</div>
           </div>
           
           <div class="timeline-item">
-            <div class="timeline-week">Week 2 · Foundation</div>
-            <div class="timeline-title">Brochure engine and CMS schema</div>
-            <div class="timeline-desc">Sanity CMS structured. Brochure generator running on test data. Zoho CRM configured with multi-user roles for the team. Zoho Mail live on sansi.africa addresses.</div>
+            <div class="timeline-week">Week 1 · Brand sprint</div>
+            <div class="timeline-title">Visual direction locked. Two revision rounds included.</div>
+            <div class="timeline-desc">Typography confirmed (Cormorant + Jost). Palette confirmed (gold, black, cream, indigo). Brochure variants designed. You see the v2 visual mockups by Friday of week 1, with two rounds of revisions included. A third revision round pushes the brand sprint into week 2 and delays everything downstream.</div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-week">Week 2 · Foundation and content intake</div>
+            <div class="timeline-title">Brochure engine built. Hippo Point content arrives.</div>
+            <div class="timeline-desc">Sanity CMS structured. Brochure generator running on test data. Zoho CRM configured with multi-user roles for the team. Zoho Mail live on sansi.africa addresses. This week's milestone depends on the Hippo Point property pack arriving by Monday of week 2 — if it arrives in week 3, the brochure demo slips by one week.</div>
           </div>
           
           <div class="timeline-item">
             <div class="timeline-week">Week 3 · First listing</div>
-            <div class="timeline-title">Hippo Point built end-to-end</div>
-            <div class="timeline-desc">Hippo Point property page live behind the access code. The first AI-drafted, your-voice-edited brochure ships. Member access door active. The platform handles its first real test.</div>
-          </div>
-          
-          <div class="timeline-item milestone">
-            <div class="timeline-week">Week 4 · Phase 1 complete</div>
-            <div class="timeline-title">The stealth platform is operational</div>
-            <div class="timeline-desc">Site live at sansi.africa with `noindex`. Brochure engine producing. CRM capturing invited contacts. WhatsApp routing. You can send brochures to clients tomorrow.</div>
+            <div class="timeline-title">Hippo Point built end-to-end. First brochure in your hands.</div>
+            <div class="timeline-desc">Hippo Point property page live behind the access code. The first AI-drafted, your-voice-edited brochure ships. Member access door active. The access code is working, and you can start sending clients the passphrase. The platform handles its first real test.</div>
           </div>
           
           <div class="timeline-item">
-            <div class="timeline-week">Weeks 5-6 · Public surface</div>
+            <div class="timeline-week">Week 4 · QA and revision buffer</div>
+            <div class="timeline-title">Edge cases handled. WhatsApp connected if Meta has approved.</div>
+            <div class="timeline-desc">This is the honest buffer built in rather than hidden. We use it for QA, revision cleanup, mobile edge cases, access-code testing, CRM routing, and WhatsApp go-live if Meta has approved the application.</div>
+          </div>
+          
+          <div class="timeline-item milestone">
+            <div class="timeline-week">Week 5 · Phase 1 complete</div>
+            <div class="timeline-title">The stealth platform is operational. The brochure engine is your new normal.</div>
+            <div class="timeline-desc">Site live at sansi.africa with `noindex`. Brochure engine producing. CRM capturing invited contacts. WhatsApp routing if approval has cleared. The milestone is simple: you can send a Hippo Point brochure to a buyer that afternoon.</div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-week">Weeks 6–7 · Public surface</div>
             <div class="timeline-title">Regions, Collection, Our Trees</div>
             <div class="timeline-desc">All five regions built with geographic hierarchy. Area profiles drafted. The Collection's public listing structure ready (just waiting for your license). Our Trees editorial section with the Milky Way moment.</div>
           </div>
           
           <div class="timeline-item">
-            <div class="timeline-week">Weeks 7-8 · Automations live</div>
+            <div class="timeline-week">Weeks 8–9 · Automations live</div>
             <div class="timeline-title">All three flows running</div>
             <div class="timeline-desc">Listing-to-live, enquiry-to-reply, no-lead-cold — all routing through Zoho with Claude drafting and you approving. Newsletter signup quietly building. Subscribe form folded into stewardship narrative.</div>
           </div>
           
           <div class="timeline-item milestone">
-            <div class="timeline-week">Week 8 · Phase 2 complete</div>
+            <div class="timeline-week">Week 9 · Phase 2 complete</div>
             <div class="timeline-title">Full platform, still in stealth</div>
             <div class="timeline-desc">Every feature works. Every page renders. Every automation runs. The site is fully grown, just not yet visible to the world.</div>
           </div>
           
           <div class="license-watch">
-            <div class="license-watch-tag">License watch</div>
-            <h4>Months 3-6 · Operational stealth</h4>
-            <p>The platform runs on real data. You generate brochures, organise leads, refine the voice, build the database. The team onboards. Each week of stealth makes the eventual public launch stronger. We meet weekly for 30 minutes to check status, surface any issues, and tune the system.</p>
+            <div class="license-watch-tag">License watch · Months 3–6</div>
+            <h4>Operational stealth — the platform earns its place.</h4>
+            <p>The platform runs on real data. You generate brochures, organise leads, refine the voice, build the database. The team onboards. Each week of stealth makes the eventual public launch stronger. You are not launching with a fresh site. You are launching with a proven one.</p>
           </div>
           
           <div class="timeline-item milestone">
-            <div class="timeline-week">License clears</div>
-            <div class="timeline-title">The day the world meets Sansi Africa</div>
-            <div class="timeline-desc">One configuration change. `noindex` becomes `index`. SEO meta pushes. The awards body gets the working URL. The Collection goes public. Three months of stealth become a fully grown launch — not a half-built one.</div>
+            <div class="timeline-week">License clears · Your call, your timing</div>
+            <div class="timeline-title">The day the world meets Sansi Africa — fully grown.</div>
+            <div class="timeline-desc">One configuration change. `noindex` becomes `index`. SEO meta pushes. The awards body gets the working URL that has been resolving for months. The Collection goes public. You are launching with months of operational maturity behind you — not a half-built site.</div>
           </div>
           
         </div>
@@ -3440,72 +3472,160 @@ h4 { font-size: 22px; font-weight: 400; }
       <div class="page-content">
         <div class="page-header">
           <span class="eyebrow">Chapter 12 · What we need from you</span>
-          <h2>The mutual list. <span class="serif-italic">All week-1 items.</span></h2>
-          <p class="lead">For the build to start clean, here's what we need from you in the first seven days. None of it is heavy — most you can send in one afternoon. The faster these arrive, the faster Phase 1 ships.</p>
+          <h2>The mutual list. <span class="serif-italic">Four categories.</span></h2>
+          <p class="lead">Some inputs shape the build. Some accounts block the build. Some decisions shape the architecture. Some legal questions are better flagged now than discovered at launch.</p>
         </div>
         
         <div class="checklist">
+          <div class="checklist-category">A · Content inputs — what shapes the build</div>
+          
           <div class="checklist-item">
             <div class="checklist-num">i</div>
             <div class="checklist-content">
               <h4>The Hippo Point property pack</h4>
-              <p>The existing brochure (the one you showed us in the meeting), photographs from your archive, any details about the property — title status, exact acreage, year of the manor, water rights, neighbour context. The more we have, the better the first AI draft.</p>
+              <p>This is the critical path item. Existing brochure, photographs, title status, exact acreage, year of the manor, water rights, neighbour context, seller notes — whatever exists. Content latency is the number one Phase 1 risk on your side.</p>
             </div>
           </div>
           
           <div class="checklist-item">
             <div class="checklist-num">ii</div>
             <div class="checklist-content">
-              <h4>Three to five writing samples</h4>
-              <p>Anything you've written — emails to clients, brochure copy, descriptions you've drafted. These train the AI on your voice. Phase 1 can launch without them, but they unlock the full Phase 3 voice match.</p>
+              <h4>Writing samples, plus voice if possible</h4>
+              <p>Emails to clients, brochure copy, property descriptions, notes you have drafted. A voice recording or WhatsApp voice note is even more valuable than writing because it captures rhythm, instinct, and the way you actually explain value.</p>
             </div>
           </div>
           
           <div class="checklist-item">
             <div class="checklist-num">iii</div>
             <div class="checklist-content">
-              <h4>Region priority</h4>
-              <p>Which region do we build first in Phase 1 — Nairobi or Naivasha? Which is closest to the properties you're working on now? The first-region build sets the visual template for the other four.</p>
+              <h4>Two additional properties for Phase 1</h4>
+              <p>Hippo Point is the private anchor. We also need one public Collection candidate for when you go live, and one development property. Together, they give the brochure system enough range to prove the structure.</p>
             </div>
           </div>
           
           <div class="checklist-item">
             <div class="checklist-num">iv</div>
             <div class="checklist-content">
-              <h4>Property manager decision</h4>
-              <p>Talk to Ricky. Decide whether his property management business links into your platform — a "managed by Ricky" tag on rental listings, or a small revenue-share arrangement. If yes, we add a lightweight module in Phase 2. If no, we leave it out cleanly.</p>
+              <h4>Region priority order</h4>
+              <p>Nairobi, Naivasha, Nanyuki, Kilifi, Lamu — tell us the order that matches your current commercial priorities. The first region becomes the visual and editorial template for the rest.</p>
             </div>
           </div>
           
           <div class="checklist-item">
             <div class="checklist-num">v</div>
             <div class="checklist-content">
-              <h4>Identity reference</h4>
-              <p>Your email signature, the Claude design experiments you mentioned, any brochures or websites you've sent us references for. We want to make sure the visual direction in week 1 reflects the references you already have in your head.</p>
+              <h4>Identity references</h4>
+              <p>Your email signature, the Claude design experiments HTML or screenshot, existing brochures, websites you admire, and anything that already feels like Sansi Africa in your head.</p>
             </div>
           </div>
           
           <div class="checklist-item">
             <div class="checklist-num">vi</div>
             <div class="checklist-content">
-              <h4>Three properties for the Phase 1 build</h4>
-              <p>Hippo Point is one (Private). We need a second — likely a Public Collection candidate for when you go live — and a third — likely a development like Riverside or Kilifi. Three properties give us full coverage of all three brochure variants in Phase 1.</p>
+              <h4>Photography plan</h4>
+              <p>What exists, what needs to be shot, and who is shooting it. If drone photography is part of the plan, CAA clearance in Kenya must be treated as a real dependency, not a nice-to-have detail.</p>
             </div>
           </div>
+          
+          <div class="checklist-category">B · Accounts and credentials — actual build blockers</div>
           
           <div class="checklist-item">
             <div class="checklist-num">vii</div>
             <div class="checklist-content">
-              <h4>Domain access for sansi.africa</h4>
-              <p>DNS access. We don't need to transfer the domain — we just need to point the DNS records to Vercel. You keep ownership. Ten minutes of setup, fully reversible.</p>
+              <h4>Domain registrar access</h4>
+              <p>We need to know which registrar holds sansi.africa, not just who manages DNS. We do not need to transfer ownership, but we do need the correct registrar login or a live handoff session to point the records to Vercel.</p>
             </div>
           </div>
           
           <div class="checklist-item">
             <div class="checklist-num">viii</div>
             <div class="checklist-content">
+              <h4>Zoho account created in your name</h4>
+              <p>Zoho CRM and Zoho Mail need to sit under your ownership. We can configure them, structure them, and connect them, but we cannot create or own the account for you.</p>
+            </div>
+          </div>
+          
+          <div class="checklist-item">
+            <div class="checklist-num">ix</div>
+            <div class="checklist-content">
+              <h4>WhatsApp Business Account</h4>
+              <p>WhatsApp Cloud API cannot run on a personal active WhatsApp number. It needs a dedicated business number and a verified Facebook Business Manager account before Meta can approve the application.</p>
+            </div>
+          </div>
+          
+          <div class="checklist-item">
+            <div class="checklist-num">x</div>
+            <div class="checklist-content">
+              <h4>Google Analytics in your name</h4>
+              <p>The analytics property should be owned by you from day one. We can create the measurement setup during a handoff session and connect it to the site.</p>
+            </div>
+          </div>
+          
+          <div class="checklist-category">C · Decisions that shape the architecture — needed by end of week 2</div>
+          
+          <div class="checklist-item">
+            <div class="checklist-num">xi</div>
+            <div class="checklist-content">
+              <h4>Passphrase model</h4>
+              <p>Choose one passphrase per property or one passphrase per buyer. Per-property is simpler and faster. Per-buyer gives better control and visibility, but adds more operational complexity.</p>
+            </div>
+          </div>
+          
+          <div class="checklist-item">
+            <div class="checklist-num">xii</div>
+            <div class="checklist-content">
+              <h4>Property manager Ricky decision</h4>
+              <p>Decide by the end of week 2 whether Ricky's property management business links into your platform. If yes, we include the lightweight module in Phase 2. If this changes later, it costs more because the architecture will already be set.</p>
+            </div>
+          </div>
+          
+          <div class="checklist-item">
+            <div class="checklist-num">xiii</div>
+            <div class="checklist-content">
+              <h4>Newsletter timing</h4>
+              <p>Decide whether the newsletter is live from day one in stealth or held until public launch. Both are valid; the choice changes how we treat signups, privacy language, and CRM routing.</p>
+            </div>
+          </div>
+          
+          <div class="checklist-item">
+            <div class="checklist-num">xiv</div>
+            <div class="checklist-content">
+              <h4>Team email handles</h4>
+              <p>Names and preferred format for the three joiners: first@sansi.africa, firstname.lastname@sansi.africa, or role-based addresses. We set this before Zoho Mail goes live.</p>
+            </div>
+          </div>
+          
+          <div class="checklist-item">
+            <div class="checklist-num">xv</div>
+            <div class="checklist-content">
               <h4>Team onboarding list</h4>
-              <p>Names and emails for the three people joining you. We pre-configure their CRM roles before they start, so when they walk in on day one they have access exactly tuned to what they need.</p>
+              <p>Names, roles, start dates, and expected CRM access for each person joining you. We pre-configure roles so they walk in with the right permissions, not a generic login.</p>
+            </div>
+          </div>
+          
+          <div class="checklist-category">D · Legal and compliance — flagged now so they are not launch-day surprises</div>
+          
+          <div class="checklist-item">
+            <div class="checklist-num">xvi</div>
+            <div class="checklist-content">
+              <h4>Privacy policy under the Kenya Data Protection Act 2019</h4>
+              <p>The site will collect names, emails, phone numbers, and buyer interest. We can draft sensible boilerplate, but a Kenyan lawyer should review it before public launch.</p>
+            </div>
+          </div>
+          
+          <div class="checklist-item">
+            <div class="checklist-num">xvii</div>
+            <div class="checklist-content">
+              <h4>Real estate license timeline</h4>
+              <p>We need your real estimate, not the hopeful one. The platform can operate in stealth while the license clears, but the public launch plan depends on an honest license window.</p>
+            </div>
+          </div>
+          
+          <div class="checklist-item">
+            <div class="checklist-num">xviii</div>
+            <div class="checklist-content">
+              <h4>Seller consent for private listings</h4>
+              <p>Private does not mean nonexistent. The property exists on the internet behind an access code, and seller awareness protects everyone before you begin sharing the passphrase with buyers.</p>
             </div>
           </div>
         </div>
@@ -3532,7 +3652,7 @@ h4 { font-size: 22px; font-weight: 400; }
           </p>
           
           <p class="closing-text">
-            Phase 1 starts on signature. Four weeks later, you have a working operational system — the brochure engine, the first private listing, the CRM spine. The world sees nothing. You start sending brochures the same week the platform goes live. Phase 2 builds the public surface, still in stealth. The day your license clears, we flip the switch. The world meets a fully grown platform, not a half-built one.
+            Phase 1 starts on signature. Five weeks later — with a one-week honest buffer built in — you have a working operational system: the brochure engine, the first private listing, the CRM spine. Your team is onboarded by this point. The world sees nothing. You start sending brochures the same week the platform goes live. Phase 2 builds the public surface, still in stealth. The day your license clears, we flip the switch. The world meets a fully grown platform, not a half-built one.
           </p>
           
           <div class="closing-meta">
