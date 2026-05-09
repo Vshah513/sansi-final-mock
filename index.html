@@ -1,0 +1,3595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sansi Africa · Platform Proposal · Prepared by Ivy Devs</title>
+<style>
+@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 300; src: url('fonts/cormorant-garamond-latin-300-normal.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 300; src: url('fonts/cormorant-garamond-latin-300-italic.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 400; src: url('fonts/cormorant-garamond-latin-400-normal.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 400; src: url('fonts/cormorant-garamond-latin-400-italic.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Cormorant Garamond'; font-style: normal; font-weight: 500; src: url('fonts/cormorant-garamond-latin-500-normal.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Cormorant Garamond'; font-style: italic; font-weight: 500; src: url('fonts/cormorant-garamond-latin-500-italic.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Jost'; font-style: normal; font-weight: 400; src: url('fonts/jost-latin-400-normal.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Jost'; font-style: normal; font-weight: 500; src: url('fonts/jost-latin-500-normal.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Jost'; font-style: normal; font-weight: 600; src: url('fonts/jost-latin-600-normal.woff2') format('woff2'); font-display: swap; }
+
+:root {
+  --black: #0A0A0A;
+  --black-soft: #1A1A1A;
+  --gold: #B8965A;
+  --gold-light: #D4B47A;
+  --gold-deep: #8C6937;
+  --cream: #F8F4ED;
+  --cream-warm: #F0EAE0;
+  --charcoal: #3A3A3A;
+  --charcoal-light: #6A6A6A;
+  --indigo: #1A1F3A;
+  --indigo-deep: #0C1024;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Jost', -apple-system, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  color: var(--black);
+  background: var(--cream);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* =================== LAYOUT =================== */
+
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100vh;
+  background: var(--indigo-deep);
+  border-right: 1px solid rgba(184, 150, 90, 0.15);
+  padding: 40px 30px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.sidebar-brand {
+  margin-bottom: 50px;
+}
+
+.sidebar-wordmark {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.45em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.sidebar-tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 13px;
+  color: rgba(248, 244, 237, 0.5);
+  line-height: 1.5;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.sidebar-section-title {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  color: rgba(184, 150, 90, 0.5);
+  text-transform: uppercase;
+  margin: 22px 0 12px;
+  padding-left: 12px;
+}
+
+.sidebar-section-title:first-child { margin-top: 0; }
+
+.sidebar-link {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 13px;
+  color: rgba(248, 244, 237, 0.7);
+  text-decoration: none;
+  padding: 10px 14px;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-left: 1px solid transparent;
+  letter-spacing: 0.02em;
+}
+
+.sidebar-link:hover {
+  color: var(--cream);
+  background: rgba(184, 150, 90, 0.08);
+}
+
+.sidebar-link.active {
+  color: var(--gold-light);
+  background: rgba(184, 150, 90, 0.1);
+  border-left-color: var(--gold);
+}
+
+.sidebar-link-num {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  opacity: 0.5;
+  font-weight: 500;
+  min-width: 22px;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 30px;
+  border-top: 1px solid rgba(184, 150, 90, 0.15);
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: rgba(248, 244, 237, 0.35);
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+/* MAIN CONTENT */
+.main {
+  margin-left: 280px;
+  flex: 1;
+  min-height: 100vh;
+}
+
+.page {
+  display: none;
+  min-height: 100vh;
+  animation: pageIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.page.active { display: block; }
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =================== TYPOGRAPHY =================== */
+
+.eyebrow {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--serif);
+  font-weight: 300;
+  letter-spacing: -0.005em;
+  line-height: 1.05;
+}
+
+h1 { font-size: clamp(48px, 7vw, 96px); font-weight: 300; }
+h2 { font-size: clamp(36px, 5vw, 56px); }
+h3 { font-size: clamp(24px, 3vw, 34px); }
+h4 { font-size: 22px; font-weight: 400; }
+
+.serif-italic { font-style: italic; color: var(--gold); }
+
+.lead {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(18px, 1.5vw, 22px);
+  line-height: 1.6;
+  color: var(--charcoal);
+}
+
+.body-text {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--black);
+}
+
+.body-text p { margin-bottom: 18px; }
+
+.label {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 8px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* =================== PAGE: COVER =================== */
+
+.cover-page {
+  min-height: 100vh;
+  background: var(--indigo-deep);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 60px 80px;
+}
+
+.cover-stars {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, rgba(184, 150, 90, 0.6), transparent),
+    radial-gradient(1px 1px at 28% 35%, rgba(184, 150, 90, 0.4), transparent),
+    radial-gradient(1.5px 1.5px at 45% 12%, rgba(184, 150, 90, 0.55), transparent),
+    radial-gradient(1px 1px at 62% 28%, rgba(184, 150, 90, 0.45), transparent),
+    radial-gradient(1.2px 1.2px at 78% 18%, rgba(184, 150, 90, 0.5), transparent),
+    radial-gradient(1px 1px at 88% 38%, rgba(184, 150, 90, 0.4), transparent),
+    radial-gradient(1px 1px at 18% 62%, rgba(184, 150, 90, 0.35), transparent),
+    radial-gradient(1.3px 1.3px at 35% 78%, rgba(184, 150, 90, 0.45), transparent),
+    radial-gradient(1px 1px at 58% 88%, rgba(184, 150, 90, 0.3), transparent),
+    radial-gradient(1.4px 1.4px at 72% 72%, rgba(184, 150, 90, 0.4), transparent),
+    radial-gradient(1px 1px at 8% 88%, rgba(184, 150, 90, 0.5), transparent),
+    radial-gradient(1px 1px at 92% 62%, rgba(184, 150, 90, 0.4), transparent),
+    radial-gradient(1.2px 1.2px at 25% 50%, rgba(184, 150, 90, 0.3), transparent),
+    radial-gradient(1px 1px at 50% 65%, rgba(184, 150, 90, 0.35), transparent);
+  opacity: 0.85;
+  animation: starsDrift 60s linear infinite;
+}
+
+@keyframes starsDrift {
+  from { transform: translateX(0); }
+  to { transform: translateX(-30px); }
+}
+
+.cover-top {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.cover-top-tagline {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.cover-top-meta {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: rgba(248, 244, 237, 0.5);
+  text-transform: uppercase;
+  text-align: right;
+  line-height: 1.8;
+}
+
+.cover-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+}
+
+.cover-title {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(56px, 9vw, 130px);
+  line-height: 0.95;
+  color: var(--cream);
+  margin-bottom: 30px;
+  letter-spacing: -0.01em;
+}
+
+.cover-title .italic {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold);
+}
+
+.cover-subtitle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(20px, 2vw, 26px);
+  color: rgba(248, 244, 237, 0.75);
+  max-width: 600px;
+  line-height: 1.5;
+  border-top: 1px solid rgba(184, 150, 90, 0.4);
+  padding-top: 24px;
+}
+
+.cover-bottom {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.cover-meta-block {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: rgba(248, 244, 237, 0.5);
+  text-transform: uppercase;
+  line-height: 2;
+}
+
+.cover-meta-block strong {
+  color: var(--gold);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+}
+
+.cover-scroll {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  color: var(--gold);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.cover-scroll:hover { opacity: 0.7; }
+.cover-scroll-line {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  position: relative;
+  overflow: hidden;
+}
+
+.cover-scroll-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--gold-light);
+  animation: scrollIndicator 2s ease-in-out infinite;
+}
+
+@keyframes scrollIndicator {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* =================== STANDARD PAGE LAYOUT =================== */
+
+.page-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 80px;
+}
+
+.page-header {
+  margin-bottom: 70px;
+  border-bottom: 1px solid rgba(184, 150, 90, 0.25);
+  padding-bottom: 40px;
+}
+
+.page-header .eyebrow { margin-bottom: 18px; display: block; }
+
+.page-header h2 {
+  margin-bottom: 24px;
+  max-width: 800px;
+}
+
+.page-header .lead { max-width: 700px; }
+
+.section { margin-bottom: 80px; }
+
+.section-title {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(184, 150, 90, 0.25);
+}
+
+/* =================== PAGE: WHAT CHANGED =================== */
+
+.changed-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-top: 50px;
+}
+
+.changed-block {
+  border-top: 1px solid rgba(184, 150, 90, 0.3);
+  padding-top: 28px;
+}
+
+.changed-block-label {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.changed-block-label.before { color: var(--charcoal-light); }
+.changed-block-label.after { color: var(--gold); }
+
+.changed-block h3 {
+  margin-bottom: 16px;
+  font-weight: 400;
+}
+
+.changed-block.before h3 { color: var(--charcoal-light); text-decoration: line-through; text-decoration-color: rgba(184, 150, 90, 0.4); text-decoration-thickness: 1px; }
+.changed-block.after h3 { color: var(--black); }
+
+.changed-block p {
+  font-family: var(--serif);
+  font-weight: 300;
+  color: var(--charcoal);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.quote-block {
+  background: var(--cream-warm);
+  border-left: 2px solid var(--gold);
+  padding: 50px 60px;
+  margin: 80px 0;
+  position: relative;
+}
+
+.quote-block::before {
+  content: '"';
+  position: absolute;
+  top: 0;
+  left: 30px;
+  font-family: var(--serif);
+  font-size: 120px;
+  font-weight: 300;
+  color: var(--gold);
+  opacity: 0.25;
+  line-height: 1;
+}
+
+.quote-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.55;
+  color: var(--black);
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.quote-attribution {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* =================== PAGE: VISION =================== */
+
+.vision-arc {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin-top: 60px;
+  position: relative;
+}
+
+.vision-stage {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 50px;
+  padding: 40px 0;
+  border-bottom: 1px solid rgba(184, 150, 90, 0.2);
+  align-items: start;
+}
+
+.vision-stage:last-child { border-bottom: none; }
+
+.vision-stage-marker {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.vision-stage-num {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 64px;
+  line-height: 1;
+  color: var(--gold);
+  font-style: italic;
+}
+
+.vision-stage-week {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--charcoal-light);
+}
+
+.vision-stage-content h3 {
+  font-weight: 400;
+  margin-bottom: 14px;
+  color: var(--black);
+}
+
+.vision-stage-content p {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--charcoal);
+  max-width: 600px;
+}
+
+/* =================== DEMO COMPONENTS =================== */
+
+.demo-frame {
+  border: 1px solid rgba(184, 150, 90, 0.3);
+  background: var(--cream);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 40px 0;
+  box-shadow: 0 30px 80px -30px rgba(10, 10, 10, 0.25);
+}
+
+.demo-chrome {
+  background: var(--indigo-deep);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(184, 150, 90, 0.2);
+}
+
+.demo-chrome-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.demo-chrome-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(184, 150, 90, 0.3);
+}
+
+.demo-chrome-url {
+  flex: 1;
+  background: rgba(248, 244, 237, 0.05);
+  border: 1px solid rgba(184, 150, 90, 0.2);
+  border-radius: 3px;
+  padding: 5px 12px;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: rgba(248, 244, 237, 0.7);
+  letter-spacing: 0.04em;
+}
+
+.demo-device-toggle {
+  display: flex;
+  gap: 4px;
+  padding: 3px;
+  background: rgba(248, 244, 237, 0.05);
+  border-radius: 3px;
+}
+
+.demo-device-btn {
+  background: none;
+  border: none;
+  padding: 3px 10px;
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: rgba(248, 244, 237, 0.5);
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+.demo-device-btn.active {
+  background: var(--gold);
+  color: var(--indigo-deep);
+}
+
+.demo-canvas {
+  background: var(--cream);
+  position: relative;
+  min-height: 600px;
+  transition: max-width 0.4s ease;
+  margin: 0 auto;
+}
+
+.demo-canvas.mobile { max-width: 375px; }
+
+.demo-caption {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--charcoal-light);
+  margin-top: 16px;
+  text-align: center;
+}
+
+/* =================== HOMEPAGE DEMO =================== */
+
+.homepage-demo {
+  padding: 0;
+}
+
+.hp-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  border-bottom: 1px solid rgba(184, 150, 90, 0.15);
+  background: var(--cream);
+}
+
+.hp-nav-brand {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.42em;
+  color: var(--black);
+  text-transform: uppercase;
+}
+
+.hp-nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.hp-nav-link {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: var(--charcoal);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s;
+  text-decoration: none;
+}
+
+.hp-nav-link:hover { color: var(--gold); }
+
+.hp-nav-tools {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hp-nav-search {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.hp-nav-login {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: var(--gold);
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 1px solid var(--gold);
+  padding: 6px 14px;
+  border-radius: 2px;
+  transition: all 0.2s;
+  background: none;
+}
+
+.hp-nav-login:hover {
+  background: var(--gold);
+  color: var(--cream);
+}
+
+.hp-hero {
+  position: relative;
+  height: 480px;
+  background: url('images/cover_hero.jpg') center/cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 60px 50px;
+  color: var(--cream);
+}
+
+.hp-hero::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.1) 50%, rgba(10,10,10,0.65) 100%);
+}
+
+.hp-hero-content { position: relative; z-index: 2; }
+
+.hp-hero-eyebrow {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  color: var(--gold-light);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.hp-hero-title {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 58px;
+  line-height: 1;
+  margin-bottom: 12px;
+  max-width: 600px;
+}
+
+.hp-hero-title .italic { font-style: italic; color: var(--gold-light); }
+
+.hp-hero-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 18px;
+  opacity: 0.85;
+  max-width: 500px;
+}
+
+.hp-search {
+  background: var(--cream);
+  margin: -40px 50px 0;
+  padding: 28px 32px;
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr auto;
+  gap: 0;
+  border: 1px solid rgba(184, 150, 90, 0.3);
+  box-shadow: 0 30px 60px -20px rgba(10,10,10,0.2);
+}
+
+.hp-search-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-right: 20px;
+  border-right: 1px solid rgba(184, 150, 90, 0.2);
+}
+
+.hp-search-field:last-of-type { border-right: none; }
+
+.hp-search-label {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 8px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.hp-search-value {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--black);
+  cursor: pointer;
+}
+
+.hp-search-btn {
+  background: var(--black);
+  color: var(--cream);
+  border: none;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  padding: 0 28px;
+  cursor: pointer;
+  margin-left: 20px;
+  transition: background 0.2s;
+}
+
+.hp-search-btn:hover { background: var(--gold); }
+
+.hp-section {
+  padding: 60px 50px;
+}
+
+.hp-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(184, 150, 90, 0.25);
+  padding-bottom: 14px;
+}
+
+.hp-section-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 26px;
+  color: var(--black);
+}
+
+.hp-section-link {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  color: var(--gold);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.hp-listings {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.hp-listing {
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+.hp-listing:hover { transform: translateY(-4px); }
+
+.hp-listing-img {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 18px;
+  position: relative;
+}
+
+.hp-listing-img.l1 { background-image: url('images/landscape_wide.jpg'); }
+.hp-listing-img.l2 { background-image: url('images/manor_image.jpg'); }
+.hp-listing-img.l3 { background-image: url('images/gallery_3.jpg'); }
+
+.hp-listing-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(10, 10, 10, 0.7);
+  color: var(--gold-light);
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 8px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  backdrop-filter: blur(8px);
+}
+
+.hp-listing-loc {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.hp-listing-name {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--black);
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+
+.hp-listing-meta {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--charcoal-light);
+}
+
+.hp-listing-price {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: var(--charcoal);
+  margin-top: 8px;
+}
+
+/* Subtle subscribe — folded into stewardship narrative */
+.hp-subtle-cta {
+  background: var(--indigo-deep);
+  padding: 70px 50px;
+  position: relative;
+  overflow: hidden;
+  color: var(--cream);
+}
+
+.hp-subtle-cta-stars {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background-image:
+    radial-gradient(1px 1px at 15% 25%, rgba(184, 150, 90, 0.5), transparent),
+    radial-gradient(1px 1px at 35% 50%, rgba(184, 150, 90, 0.4), transparent),
+    radial-gradient(1.2px 1.2px at 60% 30%, rgba(184, 150, 90, 0.55), transparent),
+    radial-gradient(1px 1px at 80% 60%, rgba(184, 150, 90, 0.4), transparent),
+    radial-gradient(1px 1px at 90% 80%, rgba(184, 150, 90, 0.45), transparent);
+  opacity: 0.6;
+}
+
+.hp-subtle-cta-content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.hp-subtle-cta-text h3 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 1.3;
+  margin-bottom: 16px;
+  color: var(--cream);
+}
+
+.hp-subtle-cta-text p {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(248, 244, 237, 0.7);
+}
+
+.hp-subtle-cta-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.hp-subtle-cta-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(184, 150, 90, 0.4);
+  padding: 12px 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 16px;
+  color: var(--cream);
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.hp-subtle-cta-input::placeholder {
+  color: rgba(248, 244, 237, 0.4);
+  font-style: italic;
+}
+
+.hp-subtle-cta-input:focus {
+  border-bottom-color: var(--gold);
+}
+
+.hp-subtle-cta-btn {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  padding: 14px 24px;
+  cursor: pointer;
+  transition: all 0.3s;
+  align-self: flex-start;
+  margin-top: 6px;
+}
+
+.hp-subtle-cta-btn:hover {
+  background: var(--gold);
+  color: var(--indigo-deep);
+}
+
+.hp-subtle-cta-note {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 12px;
+  color: rgba(248, 244, 237, 0.4);
+  margin-top: 4px;
+}
+
+/* =================== PROPERTY PAGE DEMO =================== */
+
+.pp-hero {
+  position: relative;
+  height: 420px;
+  background: url('images/cover_hero.jpg') center/cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 50px;
+  color: var(--cream);
+}
+
+.pp-hero::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: linear-gradient(to bottom, rgba(10,10,10,0.4) 0%, transparent 50%, rgba(10,10,10,0.7) 100%);
+}
+
+.pp-hero-content { position: relative; z-index: 2; }
+
+.pp-hero-meta {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 14px;
+}
+
+.pp-hero-tag {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--gold-light);
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border: 1px solid var(--gold-light);
+}
+
+.pp-hero-file {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: rgba(248, 244, 237, 0.6);
+  text-transform: uppercase;
+  align-self: center;
+}
+
+.pp-hero-title {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 56px;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.pp-hero-loc {
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  color: rgba(248, 244, 237, 0.85);
+  text-transform: uppercase;
+}
+
+.pp-body {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 60px;
+  padding: 60px 50px;
+}
+
+.pp-story h3 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--gold);
+  margin-bottom: 24px;
+  border-left: 2px solid var(--gold);
+  padding-left: 20px;
+}
+
+.pp-story p {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--charcoal);
+  margin-bottom: 16px;
+}
+
+.pp-sidebar {
+  border-left: 1px solid rgba(184, 150, 90, 0.25);
+  padding-left: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.pp-sidebar-section h4 {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(184, 150, 90, 0.2);
+}
+
+.pp-spec {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-family: var(--sans);
+  font-size: 12px;
+}
+
+.pp-spec-label {
+  color: var(--charcoal-light);
+  font-weight: 400;
+}
+
+.pp-spec-value {
+  color: var(--black);
+  font-weight: 500;
+}
+
+.pp-cta {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pp-cta-btn {
+  background: var(--black);
+  color: var(--cream);
+  border: none;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  padding: 14px 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.pp-cta-btn:hover { background: var(--gold); }
+
+.pp-cta-btn-outline {
+  background: transparent;
+  color: var(--black);
+  border: 1px solid var(--black);
+}
+
+.pp-cta-btn-outline:hover {
+  background: var(--black);
+  color: var(--cream);
+}
+
+/* =================== AUTOMATIONS =================== */
+
+.auto-hero {
+  background: var(--indigo-deep);
+  margin: -100px -80px 60px;
+  padding: 100px 80px 80px;
+  color: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+
+.auto-hero::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background-image:
+    radial-gradient(1px 1px at 15% 30%, rgba(184, 150, 90, 0.5), transparent),
+    radial-gradient(1px 1px at 45% 70%, rgba(184, 150, 90, 0.4), transparent),
+    radial-gradient(1.2px 1.2px at 75% 25%, rgba(184, 150, 90, 0.5), transparent),
+    radial-gradient(1px 1px at 85% 60%, rgba(184, 150, 90, 0.4), transparent);
+  opacity: 0.5;
+}
+
+.auto-hero-content { position: relative; z-index: 2; max-width: 800px; }
+.auto-hero h2 { color: var(--cream); margin-bottom: 20px; }
+.auto-hero .lead { color: rgba(248, 244, 237, 0.8); }
+
+.auto-flow {
+  margin-bottom: 80px;
+  padding: 40px;
+  background: var(--cream-warm);
+  border: 1px solid rgba(184, 150, 90, 0.2);
+}
+
+.auto-flow-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.auto-flow-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 60px;
+  line-height: 1;
+  color: var(--gold);
+}
+
+.auto-flow-titles { flex: 1; padding-left: 30px; }
+
+.auto-flow-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 28px;
+  color: var(--black);
+  margin-bottom: 6px;
+}
+
+.auto-flow-tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 16px;
+  color: var(--charcoal);
+}
+
+.auto-flow-time {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  color: var(--gold);
+  text-transform: uppercase;
+  background: var(--cream);
+  padding: 8px 14px;
+  border: 1px solid var(--gold);
+}
+
+.auto-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.auto-state {
+  padding: 20px;
+  background: var(--cream);
+  border-left: 2px solid;
+}
+
+.auto-state.before { border-left-color: rgba(58, 58, 58, 0.5); }
+.auto-state.after { border-left-color: var(--gold); }
+
+.auto-state-label {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.auto-state.before .auto-state-label { color: var(--charcoal-light); }
+.auto-state.after .auto-state-label { color: var(--gold); }
+
+.auto-state p {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--charcoal);
+}
+
+.auto-pipeline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0;
+  padding: 24px 20px;
+  background: var(--indigo-deep);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.auto-pipeline-step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.auto-pipeline-icon {
+  width: 44px;
+  height: 44px;
+  background: rgba(184, 150, 90, 0.1);
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--gold);
+  position: relative;
+}
+
+.auto-pipeline-label {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: rgba(248, 244, 237, 0.85);
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.auto-pipeline-line {
+  flex: 0.4;
+  height: 1px;
+  background: linear-gradient(to right, var(--gold) 50%, transparent 50%);
+  background-size: 8px 1px;
+  position: relative;
+  margin: 0 -10px;
+  align-self: center;
+  margin-top: -25px;
+  z-index: 1;
+}
+
+.auto-pipeline-line::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold-light);
+  box-shadow: 0 0 12px var(--gold);
+  animation: pipelineDot 3s ease-in-out infinite;
+}
+
+@keyframes pipelineDot {
+  0%, 100% { left: 0; opacity: 0; }
+  10%, 90% { opacity: 1; }
+  50% { left: calc(100% - 6px); opacity: 1; }
+}
+
+/* =================== TECH STACK =================== */
+
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.stack-card {
+  background: var(--cream-warm);
+  padding: 30px;
+  border-left: 2px solid var(--gold);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stack-card-name {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 22px;
+  color: var(--black);
+}
+
+.stack-card-role {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.stack-card-desc {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--charcoal);
+}
+
+.stack-card-cost {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 11px;
+  color: var(--charcoal-light);
+  border-top: 1px solid rgba(184, 150, 90, 0.2);
+  padding-top: 10px;
+  margin-top: auto;
+}
+
+/* =================== INVESTMENT =================== */
+
+.invest-summary {
+  background: var(--indigo-deep);
+  color: var(--cream);
+  padding: 60px 50px;
+  margin: 40px 0 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.invest-summary::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, rgba(184, 150, 90, 0.5), transparent),
+    radial-gradient(1px 1px at 80% 60%, rgba(184, 150, 90, 0.4), transparent),
+    radial-gradient(1.2px 1.2px at 50% 80%, rgba(184, 150, 90, 0.5), transparent);
+  opacity: 0.4;
+}
+
+.invest-summary-content { position: relative; z-index: 2; }
+
+.invest-summary-eyebrow {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.invest-summary-title {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 28px;
+  margin-bottom: 24px;
+  color: var(--cream);
+}
+
+.invest-summary-amount {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 96px;
+  line-height: 1;
+  color: var(--gold-light);
+  margin: 24px 0;
+  letter-spacing: -0.02em;
+}
+
+.invest-summary-amount .currency {
+  font-size: 48px;
+  vertical-align: super;
+  margin-right: 6px;
+  color: var(--gold);
+}
+
+.invest-summary-detail {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 16px;
+  color: rgba(248, 244, 237, 0.7);
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.phases {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin-bottom: 60px;
+}
+
+.phase {
+  display: grid;
+  grid-template-columns: 250px 1fr 200px;
+  gap: 40px;
+  padding: 40px 0;
+  border-top: 1px solid rgba(184, 150, 90, 0.3);
+  align-items: start;
+}
+
+.phase:last-child { border-bottom: 1px solid rgba(184, 150, 90, 0.3); }
+
+.phase-marker { display: flex; flex-direction: column; gap: 8px; }
+
+.phase-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 48px;
+  line-height: 1;
+  color: var(--gold);
+}
+
+.phase-name {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--charcoal);
+}
+
+.phase-weeks {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 13px;
+  color: var(--charcoal-light);
+}
+
+.phase-content h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 26px;
+  color: var(--black);
+  margin-bottom: 14px;
+}
+
+.phase-content ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.phase-content li {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 15px;
+  color: var(--charcoal);
+  padding-left: 22px;
+  position: relative;
+  line-height: 1.6;
+}
+
+.phase-content li::before {
+  content: '·';
+  position: absolute;
+  left: 8px;
+  color: var(--gold);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.phase-price {
+  text-align: right;
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 36px;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.phase-price-label {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--charcoal-light);
+  margin-top: 6px;
+}
+
+/* MAINTENANCE */
+
+.maintenance {
+  background: var(--cream-warm);
+  border: 1px solid rgba(184, 150, 90, 0.3);
+  padding: 50px;
+  margin: 30px 0;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 50px;
+  align-items: start;
+}
+
+.maintenance-left h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 28px;
+  color: var(--black);
+  margin-bottom: 8px;
+}
+
+.maintenance-tag {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: inline-block;
+  padding: 4px 10px;
+  border: 1px solid var(--gold);
+}
+
+.maintenance-desc {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--charcoal);
+  margin-bottom: 20px;
+}
+
+.maintenance-includes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.maintenance-includes li {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--charcoal);
+  padding-left: 22px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.maintenance-includes li::before {
+  content: '·';
+  position: absolute;
+  left: 8px;
+  color: var(--gold);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.maintenance-right {
+  background: var(--cream);
+  padding: 30px;
+  text-align: center;
+  border-top: 2px solid var(--gold);
+}
+
+.maintenance-amount {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 56px;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.maintenance-amount .currency {
+  font-size: 28px;
+  vertical-align: super;
+  margin-right: 4px;
+}
+
+.maintenance-period {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--charcoal-light);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.maintenance-note {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 13px;
+  color: var(--charcoal);
+  line-height: 1.5;
+}
+
+/* ANNUAL COSTS TABLE */
+
+.annual-table {
+  background: var(--cream-warm);
+  border: 1px solid rgba(184, 150, 90, 0.25);
+  padding: 30px 36px;
+  margin-top: 30px;
+}
+
+.annual-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(184, 150, 90, 0.15);
+  font-family: var(--sans);
+}
+
+.annual-row:last-child { border-bottom: none; }
+
+.annual-name {
+  font-size: 13px;
+  color: var(--charcoal);
+  font-weight: 400;
+}
+
+.annual-cost {
+  font-size: 13px;
+  color: var(--black);
+  font-weight: 500;
+}
+
+.annual-total {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  padding-top: 18px;
+  margin-top: 8px;
+  border-top: 1px solid var(--gold);
+  font-family: var(--sans);
+}
+
+.annual-total .annual-name {
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.annual-total .annual-cost {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--black);
+}
+
+/* =================== TIMELINE =================== */
+
+.timeline {
+  position: relative;
+  padding-left: 30px;
+  margin-top: 40px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 6px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--gold) 0%, var(--gold) 80%, rgba(184, 150, 90, 0.2) 100%);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 50px;
+  padding-left: 20px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -30px;
+  top: 8px;
+  width: 13px;
+  height: 13px;
+  background: var(--cream);
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+}
+
+.timeline-item.milestone::before {
+  background: var(--gold);
+  box-shadow: 0 0 0 4px rgba(184, 150, 90, 0.2);
+}
+
+.timeline-week {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.timeline-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--black);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.timeline-desc {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 15px;
+  color: var(--charcoal);
+  line-height: 1.7;
+  max-width: 600px;
+}
+
+/* LICENSE WATCH */
+.license-watch {
+  background: var(--indigo-deep);
+  color: var(--cream);
+  padding: 30px 36px;
+  margin: 40px 0;
+  border-left: 2px solid var(--gold);
+  position: relative;
+}
+
+.license-watch-tag {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+
+.license-watch h4 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--cream);
+  margin-bottom: 10px;
+}
+
+.license-watch p {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 14px;
+  color: rgba(248, 244, 237, 0.75);
+  line-height: 1.7;
+}
+
+/* =================== WHAT WE NEED =================== */
+
+.checklist {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  margin-top: 30px;
+}
+
+.checklist-item {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  gap: 20px;
+  padding: 22px 0;
+  border-bottom: 1px solid rgba(184, 150, 90, 0.2);
+  align-items: start;
+}
+
+.checklist-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 32px;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.checklist-content h4 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 19px;
+  color: var(--black);
+  margin-bottom: 5px;
+}
+
+.checklist-content p {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--charcoal);
+  line-height: 1.6;
+}
+
+/* =================== BROCHURE EMBED =================== */
+
+.brochure-section {
+  background: var(--indigo-deep);
+  margin: -100px -80px 0;
+  padding: 100px 80px;
+  color: var(--cream);
+}
+
+.brochure-section .page-header {
+  border-bottom-color: rgba(184, 150, 90, 0.3);
+}
+
+.brochure-section .page-header h2 { color: var(--cream); }
+.brochure-section .page-header .lead { color: rgba(248, 244, 237, 0.75); }
+
+.brochure-viewer {
+  margin-top: 60px;
+  background: var(--cream);
+  border: 1px solid rgba(184, 150, 90, 0.3);
+  padding: 8px;
+  position: relative;
+}
+
+.brochure-frame {
+  width: 100%;
+  height: 800px;
+  border: none;
+  display: block;
+}
+
+.brochure-actions {
+  margin-top: 30px;
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.brochure-btn {
+  background: var(--gold);
+  color: var(--indigo-deep);
+  border: none;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  padding: 14px 26px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.brochure-btn:hover {
+  background: var(--gold-light);
+}
+
+.brochure-btn.outline {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+}
+
+.brochure-btn.outline:hover {
+  background: var(--gold);
+  color: var(--indigo-deep);
+}
+
+/* =================== LOGIN DEMO =================== */
+
+.login-demo {
+  background: var(--indigo-deep);
+  padding: 60px 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 500px;
+}
+
+.login-demo::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background-image:
+    radial-gradient(1px 1px at 15% 25%, rgba(184, 150, 90, 0.4), transparent),
+    radial-gradient(1px 1px at 50% 60%, rgba(184, 150, 90, 0.4), transparent),
+    radial-gradient(1.2px 1.2px at 80% 30%, rgba(184, 150, 90, 0.5), transparent);
+  opacity: 0.5;
+}
+
+.login-left {
+  position: relative;
+  z-index: 2;
+  color: var(--cream);
+}
+
+.login-left .eyebrow { color: var(--gold-light); margin-bottom: 18px; display: block; }
+
+.login-left h3 {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 36px;
+  line-height: 1.2;
+  margin-bottom: 18px;
+  color: var(--cream);
+}
+
+.login-left p {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(248, 244, 237, 0.7);
+}
+
+.login-form {
+  position: relative;
+  z-index: 2;
+  background: rgba(248, 244, 237, 0.04);
+  border: 1px solid rgba(184, 150, 90, 0.3);
+  padding: 40px 36px;
+  backdrop-filter: blur(20px);
+}
+
+.login-form-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--cream);
+  margin-bottom: 6px;
+}
+
+.login-form-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 14px;
+  color: rgba(248, 244, 237, 0.6);
+  margin-bottom: 30px;
+}
+
+.login-input-group {
+  margin-bottom: 20px;
+}
+
+.login-input-label {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.login-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(184, 150, 90, 0.4);
+  padding: 10px 0;
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 16px;
+  color: var(--cream);
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.login-input:focus {
+  border-bottom-color: var(--gold);
+}
+
+.login-btn {
+  width: 100%;
+  background: var(--gold);
+  color: var(--indigo-deep);
+  border: none;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  padding: 14px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+.login-btn:hover { background: var(--gold-light); }
+
+.login-divider {
+  margin: 24px 0 16px;
+  text-align: center;
+  font-family: var(--sans);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 11px;
+  color: rgba(248, 244, 237, 0.4);
+  position: relative;
+}
+
+.login-divider::before,
+.login-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 30%;
+  height: 1px;
+  background: rgba(184, 150, 90, 0.2);
+}
+
+.login-divider::before { left: 0; }
+.login-divider::after { right: 0; }
+
+.login-link {
+  display: block;
+  text-align: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 14px;
+  color: var(--gold);
+  margin-top: 14px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.login-link:hover { color: var(--gold-light); }
+
+/* =================== CLOSING =================== */
+
+.closing-page {
+  background: var(--indigo-deep);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 100px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.closing-page::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, rgba(184, 150, 90, 0.5), transparent),
+    radial-gradient(1px 1px at 28% 35%, rgba(184, 150, 90, 0.4), transparent),
+    radial-gradient(1.2px 1.2px at 45% 12%, rgba(184, 150, 90, 0.55), transparent),
+    radial-gradient(1px 1px at 62% 28%, rgba(184, 150, 90, 0.45), transparent),
+    radial-gradient(1px 1px at 78% 18%, rgba(184, 150, 90, 0.4), transparent),
+    radial-gradient(1px 1px at 18% 62%, rgba(184, 150, 90, 0.35), transparent),
+    radial-gradient(1.3px 1.3px at 35% 78%, rgba(184, 150, 90, 0.45), transparent),
+    radial-gradient(1px 1px at 58% 88%, rgba(184, 150, 90, 0.3), transparent),
+    radial-gradient(1.2px 1.2px at 72% 72%, rgba(184, 150, 90, 0.4), transparent);
+  opacity: 0.7;
+}
+
+.closing-content {
+  position: relative;
+  z-index: 2;
+  max-width: 850px;
+}
+
+.closing-eyebrow {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+
+.closing-quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(32px, 4.5vw, 56px);
+  line-height: 1.25;
+  color: var(--cream);
+  margin-bottom: 40px;
+  letter-spacing: -0.005em;
+}
+
+.closing-quote .gold { color: var(--gold-light); font-style: italic; }
+
+.closing-divider {
+  width: 80px;
+  height: 1px;
+  background: var(--gold);
+  margin: 50px 0;
+}
+
+.closing-text {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.75;
+  color: rgba(248, 244, 237, 0.75);
+  margin-bottom: 30px;
+  max-width: 700px;
+}
+
+.closing-meta {
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  color: var(--gold);
+  text-transform: uppercase;
+  line-height: 2.2;
+  margin-top: 60px;
+}
+
+.closing-meta-line {
+  color: rgba(248, 244, 237, 0.5);
+  font-weight: 400;
+}
+
+/* =================== MOBILE TOGGLE =================== */
+
+.mobile-menu-btn {
+  display: none;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--indigo-deep);
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 12px 16px;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  z-index: 200;
+}
+
+/* =================== RESPONSIVE =================== */
+
+@media (max-width: 1024px) {
+  .changed-grid { grid-template-columns: 1fr; gap: 30px; }
+  .pp-body { grid-template-columns: 1fr; gap: 30px; }
+  .pp-sidebar { border-left: none; padding-left: 0; border-top: 1px solid rgba(184, 150, 90, 0.25); padding-top: 30px; }
+  .hp-listings { grid-template-columns: repeat(2, 1fr); }
+  .hp-subtle-cta-content { grid-template-columns: 1fr; gap: 30px; }
+  .login-demo { grid-template-columns: 1fr; gap: 40px; }
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-btn { display: block; }
+  
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    width: 280px;
+  }
+  
+  .sidebar.open { transform: translateX(0); }
+  
+  .main { margin-left: 0; }
+  
+  .page-content { padding: 80px 28px; }
+  
+  .cover-page { padding: 50px 30px; }
+  .cover-top { flex-direction: column; gap: 30px; }
+  .cover-bottom { flex-direction: column; gap: 30px; align-items: flex-start; }
+  
+  h1 { font-size: 56px; }
+  h2 { font-size: 40px; }
+  h3 { font-size: 26px; }
+  
+  .changed-grid { grid-template-columns: 1fr; }
+  .vision-stage { grid-template-columns: 1fr; gap: 14px; }
+  .vision-stage-num { font-size: 48px; }
+  
+  .auto-hero { margin: -80px -28px 60px; padding: 60px 28px; }
+  .auto-flow { padding: 24px; }
+  .auto-flow-header { flex-direction: column; gap: 16px; }
+  .auto-flow-titles { padding-left: 0; }
+  .auto-comparison { grid-template-columns: 1fr; }
+  .auto-pipeline { padding: 16px 12px; flex-direction: column; gap: 16px; }
+  .auto-pipeline-line { display: none; }
+  
+  .stack-grid { grid-template-columns: 1fr; }
+  
+  .phase { grid-template-columns: 1fr; gap: 14px; }
+  .phase-price { text-align: left; font-size: 42px; }
+  
+  .maintenance { grid-template-columns: 1fr; padding: 30px; gap: 24px; }
+  
+  .hp-search { grid-template-columns: 1fr; gap: 16px; padding: 20px; margin: 0 16px; }
+  .hp-search-field { padding-right: 0; border-right: none; border-bottom: 1px solid rgba(184, 150, 90, 0.2); padding-bottom: 12px; }
+  .hp-search-btn { margin-left: 0; padding: 14px; }
+  .hp-listings { grid-template-columns: 1fr; }
+  
+  .brochure-section { margin: -80px -28px 0; padding: 60px 28px; }
+  .brochure-frame { height: 500px; }
+  
+  .closing-page { padding: 80px 30px; }
+  
+  .pp-hero, .hp-hero { padding: 30px; height: 360px; }
+  .hp-section { padding: 40px 24px; }
+  .hp-nav { padding: 16px 24px; }
+  .hp-nav-links { display: none; }
+  .login-demo { padding: 40px 24px; }
+}
+</style>
+</head>
+<body>
+
+<button class="mobile-menu-btn" onclick="toggleSidebar()">Menu</button>
+
+<div class="app">
+
+  <!-- ===================== SIDEBAR ===================== -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="sidebar-wordmark">Sansi · Africa</div>
+      <div class="sidebar-tagline">A platform built<br>on stewardship</div>
+    </div>
+    
+    <div class="sidebar-nav">
+      <div class="sidebar-section-title">Begin</div>
+      <a class="sidebar-link active" data-page="cover" onclick="goToPage('cover')">
+        <span class="sidebar-link-num">01</span><span>Introduction</span>
+      </a>
+      <a class="sidebar-link" data-page="changed" onclick="goToPage('changed')">
+        <span class="sidebar-link-num">02</span><span>What Changed</span>
+      </a>
+      <a class="sidebar-link" data-page="vision" onclick="goToPage('vision')">
+        <span class="sidebar-link-num">03</span><span>The Vision</span>
+      </a>
+      
+      <div class="sidebar-section-title">Demos</div>
+      <a class="sidebar-link" data-page="homepage" onclick="goToPage('homepage')">
+        <span class="sidebar-link-num">04</span><span>Homepage</span>
+      </a>
+      <a class="sidebar-link" data-page="property" onclick="goToPage('property')">
+        <span class="sidebar-link-num">05</span><span>Property Page</span>
+      </a>
+      <a class="sidebar-link" data-page="brochure" onclick="goToPage('brochure')">
+        <span class="sidebar-link-num">06</span><span>The Brochure</span>
+      </a>
+      <a class="sidebar-link" data-page="login" onclick="goToPage('login')">
+        <span class="sidebar-link-num">07</span><span>Member Access</span>
+      </a>
+      
+      <div class="sidebar-section-title">System</div>
+      <a class="sidebar-link" data-page="automations" onclick="goToPage('automations')">
+        <span class="sidebar-link-num">08</span><span>Automations</span>
+      </a>
+      <a class="sidebar-link" data-page="stack" onclick="goToPage('stack')">
+        <span class="sidebar-link-num">09</span><span>Tech & Tools</span>
+      </a>
+      
+      <div class="sidebar-section-title">Engagement</div>
+      <a class="sidebar-link" data-page="investment" onclick="goToPage('investment')">
+        <span class="sidebar-link-num">10</span><span>Investment</span>
+      </a>
+      <a class="sidebar-link" data-page="timeline" onclick="goToPage('timeline')">
+        <span class="sidebar-link-num">11</span><span>Timeline</span>
+      </a>
+      <a class="sidebar-link" data-page="needs" onclick="goToPage('needs')">
+        <span class="sidebar-link-num">12</span><span>What We Need</span>
+      </a>
+      <a class="sidebar-link" data-page="closing" onclick="goToPage('closing')">
+        <span class="sidebar-link-num">13</span><span>Closing</span>
+      </a>
+    </div>
+    
+    <div class="sidebar-footer">
+      Prepared by Ivy Devs<br>
+      For Sansi Africa<br>
+      May 2026
+    </div>
+  </nav>
+
+  <!-- ===================== MAIN ===================== -->
+  <main class="main">
+
+    <!-- ============= PAGE 01: COVER ============= -->
+    <section class="page active" id="cover">
+      <div class="cover-page">
+        <div class="cover-stars"></div>
+        
+        <div class="cover-top">
+          <div class="cover-top-tagline">A Platform Proposal · Version 02</div>
+          <div class="cover-top-meta">
+            Prepared for · <strong style="color: var(--gold);">Sansi</strong><br>
+            By · Ivy Devs<br>
+            May · 2026
+          </div>
+        </div>
+        
+        <div class="cover-content">
+          <h1 class="cover-title">
+            A platform<br>
+            built for the<br>
+            <span class="italic">office</span> that<br>
+            does not yet exist.
+          </h1>
+          <p class="cover-subtitle">
+            What follows is the rebuild of our proposal, shaped by what you told us in the second meeting. Stewardship as the brand. Editorial as the form. Mobile first. Stealth until you are ready.
+          </p>
+        </div>
+        
+        <div class="cover-bottom">
+          <div class="cover-meta-block">
+            <strong>Engagement</strong><br>
+            Sansi Africa platform · stealth-first build<br>
+            <strong>Recommended package</strong> $4,950 phased<br>
+            Optional maintenance · $150/month
+          </div>
+          <div class="cover-scroll" onclick="goToPage('changed')">
+            <span>Begin</span>
+            <span class="cover-scroll-line"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= PAGE 02: WHAT CHANGED ============= -->
+    <section class="page" id="changed">
+      <div class="page-content">
+        <div class="page-header">
+          <span class="eyebrow">Chapter 02 · What changed since we last met</span>
+          <h2>You clarified the brief. <span class="serif-italic">We listened.</span></h2>
+          <p class="lead">In our first meeting we proposed a cinematic 3D experience. In our second meeting you reminded us that your buyers live on their phones, that your brand is editorial not theatrical, and that what you are building is far more interesting than a luxury website. So we rebuilt this from the ground up.</p>
+        </div>
+        
+        <div class="changed-grid">
+          <div class="changed-block before">
+            <div class="changed-block-label before">Before — Original direction</div>
+            <h3>A six-viewport cinematic descent. The cosmos as homepage.</h3>
+            <p>Beautiful. Differentiated. But heavy on mobile. Loud where the brand should whisper. Built for laptop visitors when most of yours arrive on a phone.</p>
+          </div>
+          <div class="changed-block after">
+            <div class="changed-block-label after">After — Where we are now</div>
+            <h3>Editorial-first. Restrained cinematic accents where they earn their place. Mobile-fast.</h3>
+            <p>The aesthetic of a publication, not a flyer. A subtle starfield in the hero. A 1-second region transition. The cosmos lives on Our Trees, where it belongs. The site loads in under two seconds on 3G.</p>
+          </div>
+          
+          <div class="changed-block before">
+            <div class="changed-block-label before">Before — A public showcase</div>
+            <h3>A website that launches in week four and starts marketing immediately.</h3>
+            <p>We assumed you wanted public visibility from day one. You don't. Not yet.</p>
+          </div>
+          <div class="changed-block after">
+            <div class="changed-block-label after">After — A stealth operational platform</div>
+            <h3>Live in week four. Invisible to search. Public when your license clears.</h3>
+            <p>The platform fully functions during the next three to six months. You generate brochures, organise leads, run automations. The world sees nothing until you flip the switch.</p>
+          </div>
+          
+          <div class="changed-block before">
+            <div class="changed-block-label before">Before — A configurator</div>
+            <h3>An interactive checklist where you tick what you want.</h3>
+            <p>You said it directly: <em>"It's better to build the whole thing. Even if it's not necessary right now, build it. Fill in the details where you need."</em></p>
+          </div>
+          <div class="changed-block after">
+            <div class="changed-block-label after">After — One package, phased</div>
+            <h3>The Recommended platform. $4,950. Built in three phases on your timeline.</h3>
+            <p>Same architecture, same end state. Phased so you spend $1,950 to start, get live, and fund the rest from the leads the platform helps you close.</p>
+          </div>
+        </div>
+        
+        <div class="quote-block">
+          <p class="quote-text">Sansi Africa is not about buildings. It's about selling really special projects to people who are a perfect fit for a neighbourhood that maintains integrity. I don't want to be that salesperson who's like, 'I'm just gonna get a quick sale done because the developer is gonna come and do a high-rise building.'</p>
+          <div class="quote-attribution">Sansi · Second meeting · April 2026</div>
+        </div>
+        
+        <p class="body-text" style="max-width: 700px;">
+          That sentence is the whole brand. Stewardship is not a value statement. It is the operating philosophy. Every page of this proposal — every architectural choice, every line of copy, every phase of the build — answers that sentence.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============= PAGE 03: THE VISION ============= -->
+    <section class="page" id="vision">
+      <div class="page-content">
+        <div class="page-header">
+          <span class="eyebrow">Chapter 03 · The vision in three movements</span>
+          <h2>A stealth operational platform <span class="serif-italic">that becomes a public storefront</span> when you are ready.</h2>
+          <p class="lead">This is not a website that launches on a date. It is a working system that operates invisibly while you finish the license, then turns visible the moment you decide. The architecture is the same the whole way through. Only the audience changes.</p>
+        </div>
+        
+        <div class="vision-arc">
+          <div class="vision-stage">
+            <div class="vision-stage-marker">
+              <div class="vision-stage-num">i</div>
+              <div class="vision-stage-week">Stealth · Weeks 1 to 4</div>
+            </div>
+            <div class="vision-stage-content">
+              <h3>The brochure engine. The first private listing. The CRM spine.</h3>
+              <p>The platform goes live at sansi.africa with no-index headers. Search engines never see it. The first brochure ships the day you have property notes and photographs. The first private listing — Hippo Point — is access-coded behind a passphrase you give to invited buyers. Zoho CRM is configured. Zoho Mail handles your sansi.africa addresses. The system works fully, in private.</p>
+            </div>
+          </div>
+          
+          <div class="vision-stage">
+            <div class="vision-stage-marker">
+              <div class="vision-stage-num">ii</div>
+              <div class="vision-stage-week">Operational · Weeks 5 to 8</div>
+            </div>
+            <div class="vision-stage-content">
+              <h3>All five regions. The full Collection structure. The three automations.</h3>
+              <p>Nairobi, Naivasha, Nanyuki, Kilifi, Lamu — built into the geographic hierarchy with area profiles. The Collection page exists for when you go public. The three automations run silently — listings staging, enquiry routing, follow-up drafts — refining themselves on real data. WhatsApp Cloud API connected. Brochure auto-generation live. Newsletter list quietly building from the few people you have invited in.</p>
+            </div>
+          </div>
+          
+          <div class="vision-stage">
+            <div class="vision-stage-marker">
+              <div class="vision-stage-num">iii</div>
+              <div class="vision-stage-week">Public · When the license clears</div>
+            </div>
+            <div class="vision-stage-content">
+              <h3>One configuration flag. The world sees you for the first time.</h3>
+              <p>The day your real estate license is in hand, we change `noindex` to `index`. The site appears in search results. We push the structured data, notify the awards body to update your listing, and your platform — already three months mature — opens to the public. You are not launching with a half-built site. You are launching with a fully grown one.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= PAGE 04: HOMEPAGE DEMO ============= -->
+    <section class="page" id="homepage">
+      <div class="page-content">
+        <div class="page-header">
+          <span class="eyebrow">Chapter 04 · The homepage</span>
+          <h2>What the world sees <span class="serif-italic">when the door opens.</span></h2>
+          <p class="lead">Editorial first. The aesthetic borrows the cleanness of luxuryestate.com — generous whitespace, structured search, photography that tells the story without shouting — and wraps it in your typography and palette. This is what your site looks like the day you go public.</p>
+        </div>
+        
+        <div class="demo-frame">
+          <div class="demo-chrome">
+            <div class="demo-chrome-dots">
+              <span class="demo-chrome-dot"></span>
+              <span class="demo-chrome-dot"></span>
+              <span class="demo-chrome-dot"></span>
+            </div>
+            <div class="demo-chrome-url">sansi.africa</div>
+            <div class="demo-device-toggle">
+              <button class="demo-device-btn active" onclick="toggleDevice('homepage-demo', this)">Desktop</button>
+              <button class="demo-device-btn" onclick="toggleDevice('homepage-demo', this)">Mobile</button>
+            </div>
+          </div>
+          
+          <div class="demo-canvas homepage-demo" id="homepage-demo">
+            
+            <!-- NAV -->
+            <div class="hp-nav">
+              <div class="hp-nav-brand">Sansi · Africa</div>
+              <div class="hp-nav-links">
+                <a class="hp-nav-link">Buy</a>
+                <a class="hp-nav-link">Rent</a>
+                <a class="hp-nav-link">The Collection</a>
+                <a class="hp-nav-link">Our Trees</a>
+                <a class="hp-nav-link">About</a>
+              </div>
+              <div class="hp-nav-tools">
+                <svg class="hp-nav-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+                <button class="hp-nav-login">Members</button>
+              </div>
+            </div>
+            
+            <!-- HERO -->
+            <div class="hp-hero">
+              <div class="hp-hero-content">
+                <div class="hp-hero-eyebrow">Real Estate · Curated · Across the Continent</div>
+                <div class="hp-hero-title">A perfect fit<br>for a <span class="italic">neighbourhood</span><br>that holds its scale.</div>
+                <div class="hp-hero-sub">Properties of character, in places worth keeping.</div>
+              </div>
+            </div>
+            
+            <!-- SEARCH -->
+            <div class="hp-search">
+              <div class="hp-search-field">
+                <span class="hp-search-label">Where</span>
+                <span class="hp-search-value">All regions</span>
+              </div>
+              <div class="hp-search-field">
+                <span class="hp-search-label">Type</span>
+                <span class="hp-search-value">Estate</span>
+              </div>
+              <div class="hp-search-field">
+                <span class="hp-search-label">Bedrooms</span>
+                <span class="hp-search-value">Any</span>
+              </div>
+              <div class="hp-search-field">
+                <span class="hp-search-label">Price</span>
+                <span class="hp-search-value">On request</span>
+              </div>
+              <button class="hp-search-btn">Search</button>
+            </div>
+            
+            <!-- LISTINGS -->
+            <div class="hp-section">
+              <div class="hp-section-header">
+                <h3 class="hp-section-title">The Collection</h3>
+                <a class="hp-section-link">View all →</a>
+              </div>
+              <div class="hp-listings">
+                <div class="hp-listing">
+                  <div class="hp-listing-img l1">
+                    <span class="hp-listing-tag">Naivasha</span>
+                  </div>
+                  <div class="hp-listing-loc">Rift Valley · Kenya</div>
+                  <div class="hp-listing-name">A 1932 estate on 489 acres</div>
+                  <div class="hp-listing-meta">Manor house · acacia forest · resident giraffe</div>
+                  <div class="hp-listing-price">On application</div>
+                </div>
+                <div class="hp-listing">
+                  <div class="hp-listing-img l2">
+                    <span class="hp-listing-tag">Nairobi</span>
+                  </div>
+                  <div class="hp-listing-loc">Karen · Kenya</div>
+                  <div class="hp-listing-name">An 1884 farmhouse, restored</div>
+                  <div class="hp-listing-meta">Heritage walls · original lead window frames</div>
+                  <div class="hp-listing-price">USD 2.4M</div>
+                </div>
+                <div class="hp-listing">
+                  <div class="hp-listing-img l3">
+                    <span class="hp-listing-tag">Riverside</span>
+                  </div>
+                  <div class="hp-listing-loc">Nairobi · Kenya</div>
+                  <div class="hp-listing-name">Riverside · 80 homes by the river</div>
+                  <div class="hp-listing-meta">Vision build · completion 2027</div>
+                  <div class="hp-listing-price">From USD 380K</div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- SUBTLE SUBSCRIBE — folded into stewardship -->
+            <div class="hp-subtle-cta">
+              <div class="hp-subtle-cta-stars"></div>
+              <div class="hp-subtle-cta-content">
+                <div class="hp-subtle-cta-text">
+                  <h3>For the properties that are not on this page.</h3>
+                  <p>Some listings never make it to the open Collection. They are quietly offered, by appointment, to the people we know are right for them. Leave your details if you would like to be among the first to hear when one becomes available.</p>
+                </div>
+                <div class="hp-subtle-cta-form">
+                  <input type="text" class="hp-subtle-cta-input" placeholder="Your name">
+                  <input type="email" class="hp-subtle-cta-input" placeholder="Where to reach you">
+                  <button class="hp-subtle-cta-btn">Stay in correspondence</button>
+                  <p class="hp-subtle-cta-note">No newsletter. We write only when there is something worth your reading.</p>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <p class="demo-caption">Click "Mobile" above to see the responsive view. Layout reorganises around the screen.</p>
+        
+        <div class="section" style="margin-top: 80px;">
+          <div class="section-title">Notes on this design</div>
+          <div class="body-text">
+            <p><strong>The subscribe is buried inside the stewardship narrative.</strong> She told us she didn't want it to feel like she was begging for emails. So instead of a popup or a banner, it sits in a contextual section about properties that aren't on the page. The ask is quiet — <em>"if you would like to be among the first"</em> — and the language matches the brand. Buyers who care, fill it in. Buyers who don't, scroll past.</p>
+            
+            <p><strong>The Members button sits in the top right.</strong> It is the discreet door for buyers and her team. Tap it to log in, or to register interest as a buyer. We walk through what happens behind that door in the Member Access demo.</p>
+            
+            <p><strong>The structured search above the fold</strong> is what luxuryestate.com does well — and what Pam Golding does badly. Region, type, bedrooms, price, all in a horizontal row, all editable, no clutter.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= PAGE 05: PROPERTY PAGE DEMO ============= -->
+    <section class="page" id="property">
+      <div class="page-content">
+        <div class="page-header">
+          <span class="eyebrow">Chapter 05 · The property page</span>
+          <h2>The digital twin of <span class="serif-italic">the brochure.</span></h2>
+          <p class="lead">Same typography, same restraint, same editorial pacing. But interactive. Click the photography. Open the brochure as PDF. Enquire and have the message routed straight to Zoho. For Private Collection properties — like Hippo Point — the entire page sits behind an access code only invited buyers receive.</p>
+        </div>
+        
+        <div class="demo-frame">
+          <div class="demo-chrome">
+            <div class="demo-chrome-dots">
+              <span class="demo-chrome-dot"></span>
+              <span class="demo-chrome-dot"></span>
+              <span class="demo-chrome-dot"></span>
+            </div>
+            <div class="demo-chrome-url">sansi.africa/private/hippo-point</div>
+            <div class="demo-device-toggle">
+              <button class="demo-device-btn active" onclick="toggleDevice('property-demo', this)">Desktop</button>
+              <button class="demo-device-btn" onclick="toggleDevice('property-demo', this)">Mobile</button>
+            </div>
+          </div>
+          
+          <div class="demo-canvas" id="property-demo">
+            <!-- HERO -->
+            <div class="pp-hero">
+              <div class="pp-hero-content">
+                <div class="pp-hero-meta">
+                  <span class="pp-hero-tag">Privately Offered</span>
+                  <span class="pp-hero-file">File · SA-2026-P-001</span>
+                </div>
+                <div class="pp-hero-title">Hippo Point</div>
+                <div class="pp-hero-loc">Naivasha · Rift Valley · Kenya</div>
+              </div>
+            </div>
+            
+            <!-- BODY -->
+            <div class="pp-body">
+              <div class="pp-story">
+                <h3>"At dusk, the giraffes come down to the dam. They do not hurry. Neither does the land that carries them."</h3>
+                <p>The estate sits four hundred and eighty-nine acres along the Rift Valley floor. The land has carried its current name since 1907, when the title was first granted. The manor house was built in 1932, of cut stone from a quarry that no longer exists, and the original timber roof beams have been replaced once in ninety-four years.</p>
+                <p>The land holds water — a perennial stream, two boreholes, and a dam that has not gone dry in any recorded drought. The dam is where the resident giraffes come down at dusk, and where the zebra cross at first light. The acacia forest at the western boundary is older than the house. The wild fig tree near the main drive is older than the country.</p>
+                <p>What the estate offers is not a property. It is a stewardship — of land that has held its scale through four generations, and that asks the next owner to do the same.</p>
+              </div>
+              
+              <div class="pp-sidebar">
+                <div class="pp-sidebar-section">
+                  <h4>The Land</h4>
+                  <div class="pp-spec"><span class="pp-spec-label">Acreage</span><span class="pp-spec-value">489 acres</span></div>
+                  <div class="pp-spec"><span class="pp-spec-label">Title</span><span class="pp-spec-value">Freehold</span></div>
+                  <div class="pp-spec"><span class="pp-spec-label">Year Built</span><span class="pp-spec-value">1932</span></div>
+                  <div class="pp-spec"><span class="pp-spec-label">Bedrooms</span><span class="pp-spec-value">6 + cottage</span></div>
+                  <div class="pp-spec"><span class="pp-spec-label">Water</span><span class="pp-spec-value">Boreholes · stream · dam</span></div>
+                  <div class="pp-spec"><span class="pp-spec-label">Access</span><span class="pp-spec-value">All-weather road</span></div>
+                </div>
+                
+                <div class="pp-sidebar-section">
+                  <h4>Practical</h4>
+                  <div class="pp-spec"><span class="pp-spec-label">Price</span><span class="pp-spec-value">On application</span></div>
+                  <div class="pp-spec"><span class="pp-spec-label">Possession</span><span class="pp-spec-value">Vacant</span></div>
+                  <div class="pp-spec"><span class="pp-spec-label">Encumbrances</span><span class="pp-spec-value">None</span></div>
+                </div>
+                
+                <div class="pp-cta">
+                  <button class="pp-cta-btn">Enquire about Hippo Point</button>
+                  <button class="pp-cta-btn pp-cta-btn-outline">Download brochure (PDF)</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="demo-caption">For Private Collection properties, this entire page sits behind a passphrase you provide to invited buyers.</p>
+        
+        <div class="section" style="margin-top: 80px;">
+          <div class="section-title">The two doors, in practice</div>
+          <div class="body-text">
+            <p><strong>The Collection (public, post-license).</strong> Listed openly. Indexed by Google. Discoverable through search. Brochures available to download by anyone who lands on the page.</p>
+            
+            <p><strong>The Private Office (passphrase-gated).</strong> Hippo Point lives here. The URL exists, but the page is gated. The buyer enters a passphrase you generated for them — different per buyer if you choose, or shared per property — and the full editorial page unlocks. They can read it, download the brochure, and send an enquiry, all without anyone outside knowing the property is for sale.</p>
+            
+            <p><strong>You decide which door each property goes through.</strong> The CMS has a single toggle: <em>Public</em> or <em>Private</em>. The platform handles the rest.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= PAGE 06: BROCHURE EMBED ============= -->
+    <section class="page" id="brochure">
+      <div class="brochure-section">
+        <div class="page-content" style="padding: 0; max-width: 1100px;">
+          <div class="page-header" style="border-bottom-color: rgba(184, 150, 90, 0.3);">
+            <span class="eyebrow" style="color: var(--gold);">Chapter 06 · The brochure</span>
+            <h2 style="color: var(--cream);">A real Hippo Point brochure. <span class="serif-italic">Generated from the system. Printed below.</span></h2>
+            <p class="lead" style="color: rgba(248, 244, 237, 0.75);">This is not a mock. It is a working PDF. We populated it with the details we have on Hippo Point and the editorial copy in the Atmospheric framework. Once we have your writing samples and real photography, the engine produces this for any property in twelve minutes.</p>
+          </div>
+          
+          <div class="brochure-viewer">
+            <iframe class="brochure-frame" src="hippo_point_brochure.pdf" title="Hippo Point Brochure"></iframe>
+          </div>
+          
+          <div class="brochure-actions">
+            <a class="brochure-btn" href="hippo_point_brochure.pdf" download="Sansi_Africa_Hippo_Point_Brochure.pdf">Download the PDF</a>
+            <a class="brochure-btn outline" href="hippo_point_brochure.pdf" target="_blank">Open in new tab</a>
+          </div>
+          
+          <div class="section" style="margin-top: 80px;">
+            <div class="section-title" style="color: var(--gold); border-bottom-color: rgba(184, 150, 90, 0.25);">What this brochure proves</div>
+            <div class="body-text" style="color: rgba(248, 244, 237, 0.85);">
+              <p style="color: rgba(248, 244, 237, 0.85);"><strong style="color: var(--cream);">The visual system works at full magazine quality.</strong> Cormorant Garamond for editorial, Jost for structure. Gold and black on warm cream. File numbering throughout. The cover, the story, the specs, the photography spread, the setting with the custom map, the practical detail, the back cover with your stewardship line.</p>
+              
+              <p style="color: rgba(248, 244, 237, 0.85);"><strong style="color: var(--cream);">The editorial voice is locked.</strong> We built three frameworks — Archaeological for heritage, Vision-Build for new developments, Atmospheric for estates and land. Hippo Point demonstrates Atmospheric. The 1884 farmhouse will use Archaeological. Riverside will use Vision-Build. The AI selects the framework based on property type and drafts copy in your voice.</p>
+              
+              <p style="color: rgba(248, 244, 237, 0.85);"><strong style="color: var(--cream);">The system is operationalisable.</strong> You drop in eight photographs, a few notes — region, acreage, story angle, price tier — and the brochure builds itself. You review, edit, approve. The output is ready for print, email, or WhatsApp. Twelve minutes.</p>
+              
+              <p style="color: rgba(248, 244, 237, 0.85);"><strong style="color: var(--cream);">The brochure is the keystone of the platform.</strong> During stealth, when there is no public site to point to, the brochure is what you send to a buyer. It is the brand walking into a room you are not in. It is, in many ways, the single most important deliverable in Phase 1.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= PAGE 07: LOGIN / MEMBER ACCESS ============= -->
+    <section class="page" id="login">
+      <div class="page-content">
+        <div class="page-header">
+          <span class="eyebrow">Chapter 07 · Member access</span>
+          <h2>The discreet door <span class="serif-italic">for the buyers and team you trust.</span></h2>
+          <p class="lead">There are three reasons someone logs in to Sansi Africa. To save searches and properties they are watching. To access the Private Collection beyond an access-coded link. To work on the platform from your own team's side. Below is the unified login that handles all three.</p>
+        </div>
+        
+        <div class="demo-frame">
+          <div class="demo-chrome">
+            <div class="demo-chrome-dots">
+              <span class="demo-chrome-dot"></span>
+              <span class="demo-chrome-dot"></span>
+              <span class="demo-chrome-dot"></span>
+            </div>
+            <div class="demo-chrome-url">sansi.africa/members</div>
+          </div>
+          
+          <div class="demo-canvas">
+            <div class="login-demo">
+              <div class="login-left">
+                <span class="eyebrow">For Members</span>
+                <h3>A quieter way to look for what you want.</h3>
+                <p>Save searches across regions. Track properties as they come to market. Receive a single message when something new fits — never a marketing email.</p>
+                <p style="margin-top: 16px;">If you have been given an access code for a private property, this is also where you redeem it.</p>
+              </div>
+              
+              <div class="login-form">
+                <h3 class="login-form-title">Sign in</h3>
+                <div class="login-form-sub">Or join the membership.</div>
+                
+                <div class="login-input-group">
+                  <label class="login-input-label">Email</label>
+                  <input type="email" class="login-input" placeholder="you@example.com" value="">
+                </div>
+                
+                <div class="login-input-group">
+                  <label class="login-input-label">Password</label>
+                  <input type="password" class="login-input" placeholder="—" value="">
+                </div>
+                
+                <button class="login-btn">Sign in</button>
+                
+                <div class="login-divider">or</div>
+                
+                <a class="login-link">Apply to join the membership</a>
+                <a class="login-link" style="margin-top: 4px;">Redeem an access code</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="section" style="margin-top: 80px;">
+          <div class="section-title">Three roles, one door</div>
+          <div class="body-text">
+            <p><strong>Members (buyers).</strong> They can save searches by region or property type, track listings, and receive a quiet email when something matches. They can also redeem access codes for private listings — Hippo Point opens for them once they enter the code you sent.</p>
+            
+            <p><strong>The team (you, your assistant, the two new joiners).</strong> Same login surface, different role. Once authenticated as staff, the platform routes you straight to the CRM dashboard, the brochure builder, and the listings manager.</p>
+            
+            <p><strong>Invited guests.</strong> A third type — someone you've personally invited to view a single private property without becoming a full member. They click a magic link in the email you send, the page unlocks for that session only, and no account is created. Discreet by design.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= PAGE 08: AUTOMATIONS ============= -->
+    <section class="page" id="automations">
+      <div class="page-content">
+        <div class="auto-hero">
+          <div class="auto-hero-content">
+            <span class="eyebrow">Chapter 08 · The three automations</span>
+            <h2 style="color: var(--cream); margin-top: 18px;">The system that runs <span class="serif-italic">underneath the website.</span></h2>
+            <p class="lead" style="color: rgba(248, 244, 237, 0.8);">Three flows that take work off your desk without taking judgement off your shoulders. Every automation produces a draft. You approve it. Nothing goes to a client without you having seen it first. That is the rule.</p>
+          </div>
+        </div>
+        
+        <!-- AUTO 01 -->
+        <div class="auto-flow">
+          <div class="auto-flow-header">
+            <div style="display: flex; align-items: baseline;">
+              <div class="auto-flow-num">01</div>
+              <div class="auto-flow-titles">
+                <div class="auto-flow-title">Listing to live</div>
+                <div class="auto-flow-tagline">From phone-photos to a published page · in minutes, not days.</div>
+              </div>
+            </div>
+            <div class="auto-flow-time">12 minutes</div>
+          </div>
+          
+          <div class="auto-comparison">
+            <div class="auto-state before">
+              <div class="auto-state-label">Today</div>
+              <p>Photos sit on your phone. Copy lives in a draft document. The brochure is built in InDesign by a designer. The listing is pushed by someone else when everyone is available. Two to three days.</p>
+            </div>
+            <div class="auto-state after">
+              <div class="auto-state-label">With the system</div>
+              <p>You drop in 8 photos and a few notes. Claude AI drafts editorial copy in your voice. The CMS builds the property page. The CRM tags the listing. The brochure auto-generates. Twelve minutes.</p>
+            </div>
+          </div>
+          
+          <div class="auto-pipeline">
+            <div class="auto-pipeline-step">
+              <div class="auto-pipeline-icon">↑</div>
+              <div class="auto-pipeline-label">Photos<br>+ notes</div>
+            </div>
+            <div class="auto-pipeline-line"></div>
+            <div class="auto-pipeline-step">
+              <div class="auto-pipeline-icon">ai</div>
+              <div class="auto-pipeline-label">Claude<br>drafts copy</div>
+            </div>
+            <div class="auto-pipeline-line"></div>
+            <div class="auto-pipeline-step">
+              <div class="auto-pipeline-icon">⌘</div>
+              <div class="auto-pipeline-label">CMS builds<br>the page</div>
+            </div>
+            <div class="auto-pipeline-line"></div>
+            <div class="auto-pipeline-step">
+              <div class="auto-pipeline-icon">⊕</div>
+              <div class="auto-pipeline-label">Brochure<br>generated</div>
+            </div>
+            <div class="auto-pipeline-line"></div>
+            <div class="auto-pipeline-step">
+              <div class="auto-pipeline-icon">→</div>
+              <div class="auto-pipeline-label">Live, tagged,<br>ready</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- AUTO 02 -->
+        <div class="auto-flow">
+          <div class="auto-flow-header">
+            <div style="display: flex; align-items: baseline;">
+              <div class="auto-flow-num">02</div>
+              <div class="auto-flow-titles">
+                <div class="auto-flow-title">Enquiry to reply</div>
+                <div class="auto-flow-tagline">In luxury real estate, speed is signal. A 1-minute reply says real operation.</div>
+              </div>
+            </div>
+            <div class="auto-flow-time">60 seconds</div>
+          </div>
+          
+          <div class="auto-comparison">
+            <div class="auto-state before">
+              <div class="auto-state-label">Today</div>
+              <p>Enquiries arrive on email, WhatsApp, Instagram, the website form. You reply when you can. By then, hot leads have cooled or gone elsewhere.</p>
+            </div>
+            <div class="auto-state after">
+              <div class="auto-state-label">With the system</div>
+              <p>Every channel routes to one Zoho inbox. Claude drafts a reply in your voice, contextualised by which property they enquired about. WhatsApp pings your phone with the draft ready. You edit if needed. Send.</p>
+            </div>
+          </div>
+          
+          <div class="auto-pipeline">
+            <div class="auto-pipeline-step">
+              <div class="auto-pipeline-icon">@</div>
+              <div class="auto-pipeline-label">Buyer<br>enquires</div>
+            </div>
+            <div class="auto-pipeline-line"></div>
+            <div class="auto-pipeline-step">
+              <div class="auto-pipeline-icon">⌬</div>
+              <div class="auto-pipeline-label">Zoho logs<br>+ tags</div>
+            </div>
+            <div class="auto-pipeline-line"></div>
+            <div class="auto-pipeline-step">
+              <div class="auto-pipeline-icon">ai</div>
+              <div class="auto-pipeline-label">Claude<br>drafts reply</div>
+            </div>
+            <div class="auto-pipeline-line"></div>
+            <div class="auto-pipeline-step">
+              <div class="auto-pipeline-icon">w</div>
+              <div class="auto-pipeline-label">WhatsApp<br>ping</div>
+            </div>
+            <div class="auto-pipeline-line"></div>
+            <div class="auto-pipeline-step">
+              <div class="auto-pipeline-icon">→</div>
+              <div class="auto-pipeline-label">You edit<br>+ send</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- AUTO 03 -->
+        <div class="auto-flow">
+          <div class="auto-flow-header">
+            <div style="display: flex; align-items: baseline;">
+              <div class="auto-flow-num">03</div>
+              <div class="auto-flow-titles">
+                <div class="auto-flow-title">No lead goes cold</div>
+                <div class="auto-flow-tagline">The deals that would have died — and didn't.</div>
+              </div>
+            </div>
+            <div class="auto-flow-time">7-day flag</div>
+          </div>
+          
+          <div class="auto-comparison">
+            <div class="auto-state before">
+              <div class="auto-state-label">Today</div>
+              <p>A great call ends with "let me think about it." Three weeks pass. You mean to follow up. You forget. The lead moves on. You never see the misses.</p>
+            </div>
+            <div class="auto-state after">
+              <div class="auto-state-label">With the system</div>
+              <p>Zoho flags any lead silent for seven days. The CRM pulls the conversation history. Claude drafts a warm follow-up referencing what was actually discussed. You review, approve, edit, or skip.</p>
+            </div>
+          </div>
+          
+          <div class="auto-pipeline">
+            <div class="auto-pipeline-step">
+              <div class="auto-pipeline-icon">7d</div>
+              <div class="auto-pipeline-label">Lead<br>silent</div>
+            </div>
+            <div class="auto-pipeline-line"></div>
+            <div class="auto-pipeline-step">
+              <div class="auto-pipeline-icon">⌬</div>
+              <div class="auto-pipeline-label">CRM<br>flags it</div>
+            </div>
+            <div class="auto-pipeline-line"></div>
+            <div class="auto-pipeline-step">
+              <div class="auto-pipeline-icon">∮</div>
+              <div class="auto-pipeline-label">Pulls full<br>history</div>
+            </div>
+            <div class="auto-pipeline-line"></div>
+            <div class="auto-pipeline-step">
+              <div class="auto-pipeline-icon">ai</div>
+              <div class="auto-pipeline-label">Claude<br>drafts</div>
+            </div>
+            <div class="auto-pipeline-line"></div>
+            <div class="auto-pipeline-step">
+              <div class="auto-pipeline-icon">→</div>
+              <div class="auto-pipeline-label">You<br>approve</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="section" style="margin-top: 80px;">
+          <div class="section-title">The non-negotiable rule</div>
+          <p class="lead" style="margin-bottom: 30px;">
+            <em>AI drafts. Sansi approves.</em> Every automation produces a draft you review before it leaves your hands. We will never build a flow that auto-sends to a client. That is not a feature — it is a liability we refuse to assume.
+          </p>
+          <p class="body-text">
+            The reason is simple. The value of your platform is your judgement, not the speed of the machine. If the AI replies directly to a $2M enquiry and gets the tone wrong, you've lost the deal and damaged the brand. If the AI drafts and you take fifteen seconds to approve, you've kept your judgement in the loop and bought back the four hours you would have spent composing from scratch. Speed without judgement is liability. Speed with judgement is operational sophistication.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= PAGE 09: TECH STACK ============= -->
+    <section class="page" id="stack">
+      <div class="page-content">
+        <div class="page-header">
+          <span class="eyebrow">Chapter 09 · Tech & Tools</span>
+          <h2>What runs underneath. <span class="serif-italic">All chosen for the long haul.</span></h2>
+          <p class="lead">No tool here exists for novelty. Each was selected to scale with you for the next decade — from a one-woman office today to a small team within a year, and to whatever the practice grows into beyond that.</p>
+        </div>
+        
+        <div class="section">
+          <div class="section-title">The CRM and operational spine</div>
+          <div class="stack-grid">
+            <div class="stack-card">
+              <div class="stack-card-role">Customer Relationship</div>
+              <div class="stack-card-name">Zoho CRM</div>
+              <div class="stack-card-desc">The spine. Lead pipeline, tagging by region and price, conversation history, multi-user roles for you and the three new joiners. You mentioned Zoho yourself — we agreed. Salesforce is enterprise; Zoho is for a small office becoming a practice.</div>
+              <div class="stack-card-cost">Free up to 3 users · $14/user/month after</div>
+            </div>
+            
+            <div class="stack-card">
+              <div class="stack-card-role">Domain Email</div>
+              <div class="stack-card-name">Zoho Mail</div>
+              <div class="stack-card-desc">Your sansi.africa email addresses, hosted by Zoho, integrated natively with the CRM. Every email you send or receive gets logged against the right contact automatically. You and the team get domain emails without the cost of Google Workspace.</div>
+              <div class="stack-card-cost">Free for up to 5 users on your domain</div>
+            </div>
+            
+            <div class="stack-card">
+              <div class="stack-card-role">Channel</div>
+              <div class="stack-card-name">WhatsApp Cloud API</div>
+              <div class="stack-card-desc">Your clients live on WhatsApp. The API connects natively through Zoho Flow, so every message routes to the same CRM as email and form enquiries. Drafts come back to your phone for approval.</div>
+              <div class="stack-card-cost">Free up to 1,000 conversations/month</div>
+            </div>
+            
+            <div class="stack-card">
+              <div class="stack-card-role">Newsletter & Property Alerts</div>
+              <div class="stack-card-name">Zoho Campaigns</div>
+              <div class="stack-card-desc">Same ecosystem. The subscribe form on the homepage feeds straight into Campaigns. When a saved-search match comes online, Campaigns sends the quiet email. No extra Mailchimp or ConvertKit subscription.</div>
+              <div class="stack-card-cost">Free up to 2,000 contacts</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="section">
+          <div class="section-title">The website and content</div>
+          <div class="stack-grid">
+            <div class="stack-card">
+              <div class="stack-card-role">Hosting & Deployment</div>
+              <div class="stack-card-name">Vercel</div>
+              <div class="stack-card-desc">The hosting layer. Industry-best speed, edge network, simple deployments. Free tier covers your launch volumes; scales transparently when traffic grows.</div>
+              <div class="stack-card-cost">~$240/year on Pro tier</div>
+            </div>
+            
+            <div class="stack-card">
+              <div class="stack-card-role">Framework</div>
+              <div class="stack-card-name">Next.js</div>
+              <div class="stack-card-desc">The framework. Server-side rendering for SEO when you go public. Static generation for the brand pages. API routes for the CRM hooks. Industry-standard, future-proof.</div>
+              <div class="stack-card-cost">Open source · no cost</div>
+            </div>
+            
+            <div class="stack-card">
+              <div class="stack-card-role">Content Management</div>
+              <div class="stack-card-name">Sanity CMS</div>
+              <div class="stack-card-desc">Where your property data lives. The form you fill out per property — name, region, photos, story notes — feeds the website, the brochure, the CRM tags, and the search filters all from one source.</div>
+              <div class="stack-card-cost">Free tier covers years of growth</div>
+            </div>
+            
+            <div class="stack-card">
+              <div class="stack-card-role">AI Drafting Layer</div>
+              <div class="stack-card-name">Claude API</div>
+              <div class="stack-card-desc">The voice engine. Trained on your writing samples in Phase 3, it drafts editorial copy for listings, replies for enquiries, and follow-ups for cooling leads. Always drafts. You always approve.</div>
+              <div class="stack-card-cost">Usage-based · ~$20-50/month at your volume</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="section">
+          <div class="section-title">Optional in Phase 2</div>
+          <div class="stack-grid">
+            <div class="stack-card">
+              <div class="stack-card-role">Internal Workspace</div>
+              <div class="stack-card-name">Notion (two-way sync)</div>
+              <div class="stack-card-desc">You already use Notion. We can build a two-way sync so property listings appear in your Notion workspace alongside your other operational notes. Optional — if it adds value to how you already work.</div>
+              <div class="stack-card-cost">Your existing Notion subscription</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= PAGE 10: INVESTMENT ============= -->
+    <section class="page" id="investment">
+      <div class="page-content">
+        <div class="page-header">
+          <span class="eyebrow">Chapter 10 · Investment</span>
+          <h2>One package. <span class="serif-italic">Phased on your timeline.</span></h2>
+          <p class="lead">You said it directly: build the whole thing. So we are. The Recommended package as one architecture, paid in three phases. Same end state as a single $4,950 commitment, but you spend in stages — and the leads from Phase 1 fund Phase 2.</p>
+        </div>
+        
+        <div class="invest-summary">
+          <div class="invest-summary-content">
+            <div class="invest-summary-eyebrow">The Recommended Package</div>
+            <div class="invest-summary-title">The full Sansi Africa platform</div>
+            <div class="invest-summary-amount"><span class="currency">$</span>4,950</div>
+            <div class="invest-summary-detail">Total build · phased $1,950 + $1,500 + $1,500. You commit to Phase 1 today. Phases 2 and 3 trigger when you are ready, not on a fixed date.</div>
+          </div>
+        </div>
+        
+        <div class="phases">
+          <div class="phase">
+            <div class="phase-marker">
+              <div class="phase-num">i</div>
+              <div class="phase-name">Stealth Operational</div>
+              <div class="phase-weeks">Weeks 1 to 4</div>
+            </div>
+            <div class="phase-content">
+              <h3>The brochure engine, Hippo Point, the CRM spine.</h3>
+              <ul>
+                <li>Brand identity locked — typography, palette, file numbering system</li>
+                <li>Brochure auto-generator (the centrepiece — first brochure ships in week 4)</li>
+                <li>First Private Collection listing with access-code system (Hippo Point ready)</li>
+                <li>Editorial property page templates</li>
+                <li>Zoho CRM configured + multi-user roles defined</li>
+                <li>Zoho Mail set up on sansi.africa</li>
+                <li>WhatsApp Cloud API connected</li>
+                <li>Site live at sansi.africa with `noindex` + splash page</li>
+              </ul>
+            </div>
+            <div>
+              <div class="phase-price">$1,950</div>
+              <div class="phase-price-label">On signature</div>
+            </div>
+          </div>
+          
+          <div class="phase">
+            <div class="phase-marker">
+              <div class="phase-num">ii</div>
+              <div class="phase-name">Public Surface</div>
+              <div class="phase-weeks">Weeks 5 to 8</div>
+            </div>
+            <div class="phase-content">
+              <h3>All five regions, the full Collection, the three automations live.</h3>
+              <ul>
+                <li>All five regions built with geographic hierarchy (Coast → Counties)</li>
+                <li>Area profiles for each region</li>
+                <li>The Collection (public listings) ready to flip on</li>
+                <li>Three automations live and routing</li>
+                <li>Newsletter signup, member login, access codes</li>
+                <li>Our Trees full editorial section with subtle Milky Way moment</li>
+                <li>Video embed support, full mobile responsive QA</li>
+                <li>Performance tuning, SEO meta, analytics setup</li>
+              </ul>
+            </div>
+            <div>
+              <div class="phase-price">$1,500</div>
+              <div class="phase-price-label">On Phase 1 acceptance</div>
+            </div>
+          </div>
+          
+          <div class="phase">
+            <div class="phase-marker">
+              <div class="phase-num">iii</div>
+              <div class="phase-name">AI Voice Layer</div>
+              <div class="phase-weeks">When ready</div>
+            </div>
+            <div class="phase-content">
+              <h3>Claude trained on your voice. Saved searches. Email automation pipelines.</h3>
+              <ul>
+                <li>Claude API fine-tuned on your writing samples (3-5 examples needed)</li>
+                <li>Voice match across listings, replies, and follow-ups</li>
+                <li>Saved-search alerts for members ("notify me when something fits")</li>
+                <li>Email automation pipelines for nurture sequences</li>
+                <li>Advanced analytics and weekly insight brief</li>
+                <li>The platform now runs on light supervision</li>
+              </ul>
+            </div>
+            <div>
+              <div class="phase-price">$1,500</div>
+              <div class="phase-price-label">When you are ready</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- MAINTENANCE -->
+        <div class="section" style="margin-top: 70px;">
+          <div class="section-title">Optional · Ongoing maintenance</div>
+          
+          <div class="maintenance">
+            <div class="maintenance-left">
+              <span class="maintenance-tag">Optional · Cancel anytime</span>
+              <h3>If you don't want to think about it.</h3>
+              <p class="maintenance-desc">
+                After Phase 1 launches, you can either manage the platform yourself or hand the operational load to us on a monthly retainer. The retainer is genuinely optional — most clients start without it and add it once the volume justifies it. Here's what it covers.
+              </p>
+              <ul class="maintenance-includes">
+                <li>Content updates — new listings, photo changes, copy edits</li>
+                <li>Bug fixes and small feature additions as they come up</li>
+                <li>CRM and automation monitoring (we catch the breaks before you do)</li>
+                <li>Software updates and security patches</li>
+                <li>One 30-minute monthly check-in call</li>
+                <li>5-day response SLA on email; 24-hour on urgent</li>
+              </ul>
+            </div>
+            <div class="maintenance-right">
+              <div class="maintenance-amount"><span class="currency">$</span>150</div>
+              <div class="maintenance-period">Per month</div>
+              <p class="maintenance-note">
+                Bills monthly, starting at Phase 2 launch. Pause or cancel with 30 days' notice. Scales up only if you ask us to take on more — we'll quote separately.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- ANNUAL COSTS -->
+        <div class="section">
+          <div class="section-title">Annual software costs (paid directly to vendors)</div>
+          <p class="body-text" style="margin-bottom: 20px;">
+            These are the third-party tools the platform runs on. None of them are marked up by Ivy Devs. You pay the vendors directly.
+          </p>
+          
+          <div class="annual-table">
+            <div class="annual-row">
+              <span class="annual-name">Vercel hosting (Pro tier)</span>
+              <span class="annual-cost">~$240/year</span>
+            </div>
+            <div class="annual-row">
+              <span class="annual-name">Domain (sansi.africa)</span>
+              <span class="annual-cost">~$20/year</span>
+            </div>
+            <div class="annual-row">
+              <span class="annual-name">Zoho CRM (free up to 3 users)</span>
+              <span class="annual-cost">$0 to start</span>
+            </div>
+            <div class="annual-row">
+              <span class="annual-name">Zoho Mail (free up to 5 users)</span>
+              <span class="annual-cost">$0</span>
+            </div>
+            <div class="annual-row">
+              <span class="annual-name">Zoho Campaigns (free up to 2,000 contacts)</span>
+              <span class="annual-cost">$0 to start</span>
+            </div>
+            <div class="annual-row">
+              <span class="annual-name">WhatsApp Cloud API (1,000 conversations/month free)</span>
+              <span class="annual-cost">$0 likely</span>
+            </div>
+            <div class="annual-row">
+              <span class="annual-name">Sanity CMS (free tier)</span>
+              <span class="annual-cost">$0 to start</span>
+            </div>
+            <div class="annual-row">
+              <span class="annual-name">Claude API (usage-based)</span>
+              <span class="annual-cost">~$240-600/year</span>
+            </div>
+            <div class="annual-total">
+              <span class="annual-name">Year 1 total estimate</span>
+              <span class="annual-cost">$500 - $900</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= PAGE 11: TIMELINE ============= -->
+    <section class="page" id="timeline">
+      <div class="page-content">
+        <div class="page-header">
+          <span class="eyebrow">Chapter 11 · The 90-day rollout</span>
+          <h2>From signature <span class="serif-italic">to license-cleared launch.</span></h2>
+          <p class="lead">The Phase 1 build runs four to five weeks. The Phase 2 build runs another three to four. After that, the platform sits in stealth and operates while you finish the license. The day the license clears, we flip the switch.</p>
+        </div>
+        
+        <div class="timeline">
+          
+          <div class="timeline-item milestone">
+            <div class="timeline-week">Week 0 · Today</div>
+            <div class="timeline-title">Sign-off, kickoff, domain handshake</div>
+            <div class="timeline-desc">Phase 1 begins on signature. We get DNS access to sansi.africa and Hippo Point details. You send your first writing samples. The brand sprint starts immediately.</div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-week">Week 1 · Brand sprint</div>
+            <div class="timeline-title">Visual direction locked</div>
+            <div class="timeline-desc">Typography confirmed (Cormorant + Jost). Palette confirmed (gold, black, cream, indigo). Brochure variants designed. You see the v2 visual mockups by Friday of week 1, with two rounds of revisions included.</div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-week">Week 2 · Foundation</div>
+            <div class="timeline-title">Brochure engine and CMS schema</div>
+            <div class="timeline-desc">Sanity CMS structured. Brochure generator running on test data. Zoho CRM configured with multi-user roles for the team. Zoho Mail live on sansi.africa addresses.</div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-week">Week 3 · First listing</div>
+            <div class="timeline-title">Hippo Point built end-to-end</div>
+            <div class="timeline-desc">Hippo Point property page live behind the access code. The first AI-drafted, your-voice-edited brochure ships. Member access door active. The platform handles its first real test.</div>
+          </div>
+          
+          <div class="timeline-item milestone">
+            <div class="timeline-week">Week 4 · Phase 1 complete</div>
+            <div class="timeline-title">The stealth platform is operational</div>
+            <div class="timeline-desc">Site live at sansi.africa with `noindex`. Brochure engine producing. CRM capturing invited contacts. WhatsApp routing. You can send brochures to clients tomorrow.</div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-week">Weeks 5-6 · Public surface</div>
+            <div class="timeline-title">Regions, Collection, Our Trees</div>
+            <div class="timeline-desc">All five regions built with geographic hierarchy. Area profiles drafted. The Collection's public listing structure ready (just waiting for your license). Our Trees editorial section with the Milky Way moment.</div>
+          </div>
+          
+          <div class="timeline-item">
+            <div class="timeline-week">Weeks 7-8 · Automations live</div>
+            <div class="timeline-title">All three flows running</div>
+            <div class="timeline-desc">Listing-to-live, enquiry-to-reply, no-lead-cold — all routing through Zoho with Claude drafting and you approving. Newsletter signup quietly building. Subscribe form folded into stewardship narrative.</div>
+          </div>
+          
+          <div class="timeline-item milestone">
+            <div class="timeline-week">Week 8 · Phase 2 complete</div>
+            <div class="timeline-title">Full platform, still in stealth</div>
+            <div class="timeline-desc">Every feature works. Every page renders. Every automation runs. The site is fully grown, just not yet visible to the world.</div>
+          </div>
+          
+          <div class="license-watch">
+            <div class="license-watch-tag">License watch</div>
+            <h4>Months 3-6 · Operational stealth</h4>
+            <p>The platform runs on real data. You generate brochures, organise leads, refine the voice, build the database. The team onboards. Each week of stealth makes the eventual public launch stronger. We meet weekly for 30 minutes to check status, surface any issues, and tune the system.</p>
+          </div>
+          
+          <div class="timeline-item milestone">
+            <div class="timeline-week">License clears</div>
+            <div class="timeline-title">The day the world meets Sansi Africa</div>
+            <div class="timeline-desc">One configuration change. `noindex` becomes `index`. SEO meta pushes. The awards body gets the working URL. The Collection goes public. Three months of stealth become a fully grown launch — not a half-built one.</div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= PAGE 12: WHAT WE NEED ============= -->
+    <section class="page" id="needs">
+      <div class="page-content">
+        <div class="page-header">
+          <span class="eyebrow">Chapter 12 · What we need from you</span>
+          <h2>The mutual list. <span class="serif-italic">All week-1 items.</span></h2>
+          <p class="lead">For the build to start clean, here's what we need from you in the first seven days. None of it is heavy — most you can send in one afternoon. The faster these arrive, the faster Phase 1 ships.</p>
+        </div>
+        
+        <div class="checklist">
+          <div class="checklist-item">
+            <div class="checklist-num">i</div>
+            <div class="checklist-content">
+              <h4>The Hippo Point property pack</h4>
+              <p>The existing brochure (the one you showed us in the meeting), photographs from your archive, any details about the property — title status, exact acreage, year of the manor, water rights, neighbour context. The more we have, the better the first AI draft.</p>
+            </div>
+          </div>
+          
+          <div class="checklist-item">
+            <div class="checklist-num">ii</div>
+            <div class="checklist-content">
+              <h4>Three to five writing samples</h4>
+              <p>Anything you've written — emails to clients, brochure copy, descriptions you've drafted. These train the AI on your voice. Phase 1 can launch without them, but they unlock the full Phase 3 voice match.</p>
+            </div>
+          </div>
+          
+          <div class="checklist-item">
+            <div class="checklist-num">iii</div>
+            <div class="checklist-content">
+              <h4>Region priority</h4>
+              <p>Which region do we build first in Phase 1 — Nairobi or Naivasha? Which is closest to the properties you're working on now? The first-region build sets the visual template for the other four.</p>
+            </div>
+          </div>
+          
+          <div class="checklist-item">
+            <div class="checklist-num">iv</div>
+            <div class="checklist-content">
+              <h4>Property manager decision</h4>
+              <p>Talk to Ricky. Decide whether his property management business links into your platform — a "managed by Ricky" tag on rental listings, or a small revenue-share arrangement. If yes, we add a lightweight module in Phase 2. If no, we leave it out cleanly.</p>
+            </div>
+          </div>
+          
+          <div class="checklist-item">
+            <div class="checklist-num">v</div>
+            <div class="checklist-content">
+              <h4>Identity reference</h4>
+              <p>Your email signature, the Claude design experiments you mentioned, any brochures or websites you've sent us references for. We want to make sure the visual direction in week 1 reflects the references you already have in your head.</p>
+            </div>
+          </div>
+          
+          <div class="checklist-item">
+            <div class="checklist-num">vi</div>
+            <div class="checklist-content">
+              <h4>Three properties for the Phase 1 build</h4>
+              <p>Hippo Point is one (Private). We need a second — likely a Public Collection candidate for when you go live — and a third — likely a development like Riverside or Kilifi. Three properties give us full coverage of all three brochure variants in Phase 1.</p>
+            </div>
+          </div>
+          
+          <div class="checklist-item">
+            <div class="checklist-num">vii</div>
+            <div class="checklist-content">
+              <h4>Domain access for sansi.africa</h4>
+              <p>DNS access. We don't need to transfer the domain — we just need to point the DNS records to Vercel. You keep ownership. Ten minutes of setup, fully reversible.</p>
+            </div>
+          </div>
+          
+          <div class="checklist-item">
+            <div class="checklist-num">viii</div>
+            <div class="checklist-content">
+              <h4>Team onboarding list</h4>
+              <p>Names and emails for the three people joining you. We pre-configure their CRM roles before they start, so when they walk in on day one they have access exactly tuned to what they need.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============= PAGE 13: CLOSING ============= -->
+    <section class="page" id="closing">
+      <div class="closing-page">
+        <div class="closing-content">
+          <div class="closing-eyebrow">Closing</div>
+          
+          <h1 class="closing-quote">
+            Most agents close the deal.<br>
+            <span class="gold">You curate the fit.</span><br>
+            We are going to build the<br>
+            platform that makes <span class="gold">that visible.</span>
+          </h1>
+          
+          <div class="closing-divider"></div>
+          
+          <p class="closing-text">
+            You spent fourteen years building a reputation that lives, today, on a domain that does not yet resolve. The platform we have proposed is not a website. It is the home that reputation deserves.
+          </p>
+          
+          <p class="closing-text">
+            Phase 1 starts on signature. Four weeks later, you have a working operational system — the brochure engine, the first private listing, the CRM spine. The world sees nothing. You start sending brochures the same week the platform goes live. Phase 2 builds the public surface, still in stealth. The day your license clears, we flip the switch. The world meets a fully grown platform, not a half-built one.
+          </p>
+          
+          <div class="closing-meta">
+            <span class="closing-meta-line">Prepared by</span> Ivy Devs<br>
+            <span class="closing-meta-line">For</span> Sansi · Africa<br>
+            <span class="closing-meta-line">Proposal version</span> 02 · May 2026<br>
+            <span class="closing-meta-line">Engagement</span> $4,950 phased · $150/mo optional<br>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+function goToPage(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
+  
+  document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+  document.querySelector(`[data-page="${pageId}"]`).classList.add('active');
+  
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  
+  if (window.innerWidth <= 768) {
+    document.getElementById('sidebar').classList.remove('open');
+  }
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
+
+function toggleDevice(canvasId, btn) {
+  const canvas = document.getElementById(canvasId);
+  const buttons = btn.parentElement.querySelectorAll('.demo-device-btn');
+  buttons.forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  
+  if (btn.textContent.toLowerCase() === 'mobile') {
+    canvas.classList.add('mobile');
+  } else {
+    canvas.classList.remove('mobile');
+  }
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  const pages = ['cover', 'changed', 'vision', 'homepage', 'property', 'brochure', 'login', 'automations', 'stack', 'investment', 'timeline', 'needs', 'closing'];
+  const current = document.querySelector('.page.active').id;
+  const idx = pages.indexOf(current);
+  
+  if (e.key === 'ArrowRight' && idx < pages.length - 1) goToPage(pages[idx + 1]);
+  if (e.key === 'ArrowLeft' && idx > 0) goToPage(pages[idx - 1]);
+});
+</script>
+
+</body>
+</html>
